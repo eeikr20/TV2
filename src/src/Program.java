@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Program {
     //Attributes
     private int id;
     private String name;
-    private ArrayList<Cast> credits;
+    private List<Cast> credits;
     private int views;
     private float rating;
     private int ratingSum;
@@ -13,24 +13,20 @@ public class Program {
     private List<String> comments;
 
     //Methods
-    public ArrayList<Cast> getCredits() {
-        return credits;
-    }
-
-     public addCredit(String name){
+     public void addCredit(credits){
 
      }
 
-     public removeCredit(String name){
+     public void removeCredit(credits){
 
      }
-    public getCredits(){
+    public void getCredits(){
 
     }
-    public getRating(){
+    public void getRating(){
 
     }
-    public incViews(){
+    public void incViews(){
 
     }
     public calculateRatings(){

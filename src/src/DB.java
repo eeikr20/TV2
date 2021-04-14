@@ -10,7 +10,7 @@ public class DB {
     private Scanner scanner;
 
     //Methods
-    public type method(type){
+
 
     }
 }

@@ -10,8 +10,7 @@ public class Cast {
     private List<String> comments;
 
     //Methods
-    //what is type enum?
-    public method(type){
+
 
     }
 }

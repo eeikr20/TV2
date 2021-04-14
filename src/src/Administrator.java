@@ -15,7 +15,7 @@ public class Administrator extends Producer {
         System.out.println();
     }
 
-    private createSuperUser(Account){
+    private void createSuperUser(){
 
     }
 }
