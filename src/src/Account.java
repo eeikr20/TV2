@@ -10,7 +10,8 @@ public class Account{
     private String type;
 
     // Methods
-    public void runCommand(){
+    public void runCommand(String input){
+        System.out.println("her");
     }
     public void logout(){
 

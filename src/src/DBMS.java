@@ -1,9 +1,26 @@
 public class DBMS {
     //Attributes
-    private String currentUser;
+    private Account currentUser;
     private boolean run;
+
+    //constructor
+    public DBMS(){
+        this.run = true;
+        this.currentUser = new Account();
+    }
     //Methods
     public void runCommand(){
+        while (run){
+            System.out.println("Awaiting input");
+            String s = DB.scanner.nextLine();
+            if (s.equals("end")){
+                run=false;
+            }
+            else {
+                currentUser.runCommand(s);
+            }
+        }
+        System.out.println("farvel");
 
     }
     private void viewPrograms(){

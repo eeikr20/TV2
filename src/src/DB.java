@@ -7,7 +7,7 @@ public class DB {
     private HashMap programs;
     private HashMap casts;
     private int count;
-    private Scanner scanner;
+    public static Scanner scanner = new Scanner(System.in);
 
     //Methods
 
