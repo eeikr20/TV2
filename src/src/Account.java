@@ -1,13 +1,21 @@
 import java.util.List;
 
-public class Account{
+public class Account extends User{
     // Atributes
     private String name;
     private int id;
     private String password;
     private List<Integer> favorites;
     private List<Integer> history;
-    private String type;
+
+    public Account(String type, String name, String password){
+        super(type);
+        this.name = name;
+        this.password = password;
+        this.id = DB.count;
+        DB.count = DB.count + 1;
+
+    }
 
     // Methods
     public void runCommand(String input){

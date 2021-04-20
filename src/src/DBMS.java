@@ -1,12 +1,12 @@
 public class DBMS {
     //Attributes
-    private Account currentUser;
+    private User currentUser;
     private boolean run;
 
     //constructor
     public DBMS(){
         this.run = true;
-        this.currentUser = new Account();
+        this.currentUser = new Visitor();
     }
     //Methods
     public void runCommand(){

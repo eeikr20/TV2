@@ -32,4 +32,8 @@ public class Program {
     public void calculateRatings(){
         
     }
+
+    public String getName() {
+        return name;
+    }
 }

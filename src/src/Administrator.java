@@ -3,6 +3,11 @@ public class Administrator extends Producer {
     private String name;
     private int id;
 
+
+    public Administrator(String type, String name, String password){
+        super(type, name, password);
+    }
+
     //Methods
     public void runCommand(){
 

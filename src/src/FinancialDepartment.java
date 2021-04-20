@@ -1,6 +1,11 @@
 import java.util.List;
 
 public class FinancialDepartment extends Account{
+
+    public FinancialDepartment(String type, String name, String password){
+        super(type, name, password);
+    }
+
     //Attributes
     private List<String> updates;
 
