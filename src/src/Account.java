@@ -10,25 +10,22 @@ public class Account{
     private String type;
 
     // Methods
-    public String runCommand(){
-      return;
+    public void runCommand(){
     }
     public void logout(){
 
     }
-    public logout(){
+
+    public  void addToFavorites(){
 
     }
-    public  addToFavorites(){
+    public  void removeFromFavorites(){
 
     }
-    public  removeFromFavorites(){
+    public  void rateProgram(){
 
     }
-    public  rateProgram(){
-
-    }
-    public  comment(){
+    public  void comment(){
 
     }
 }

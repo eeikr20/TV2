@@ -4,14 +4,14 @@ public class Administrator extends Producer {
     private int id;
 
     //Methods
-    public String runCommand(){
+    public void runCommand(){
 
     }
-    public verifyProgram(String name){
+    public void verifyProgram(String name){
         System.out.println();
     }
 
-    public addprogram(String name){
+    public void addprogram(String name){
         System.out.println();
     }
 

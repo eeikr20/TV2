@@ -3,25 +3,25 @@ public class DBMS {
     private String currentUser;
     private boolean run;
     //Methods
-    public String runCommand(){
+    public void runCommand(){
 
     }
-    private viewPrograms(){
+    private void viewPrograms(){
 
     }
-    private viewPeople(){
+    private void viewPeople(){
 
     }
-    private searchPrograms(){
+    private void searchPrograms(){
 
     }
-    private searchPeople(){
+    private void searchPeople(){
 
     }
-    private searchByViews(){
+    private void searchByViews(){
 
     }
-    private searchByRating(){
+    private void searchByRating(){
 
     }
 }

@@ -5,13 +5,13 @@ public class FinancialDepartment extends Account{
     private List<String> updates;
 
     //Methods
-    public runCommand(String){
+    public void runCommand(String s){
 
     }
-    public getupdate(){
+    public void getupdate(){
 
     }
-    public deleteUpdates(){
+    public void deleteUpdates(){
 
     }
 }

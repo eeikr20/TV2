@@ -7,12 +7,12 @@ public class Producer extends Account {
     private List<String> owner;
 
     //Methods
-    public addProgram(String name){
+    public void addProgram(String name){
         System.out.println();
     }
 
-    @Override
-    public runCommand(){
+    //@Override
+    public void runCommand(String input){
     }
     public void addprogram(){
     }
@@ -22,7 +22,7 @@ public class Producer extends Account {
     }
     public void deleteUpdates(){
     }
-    public runCommand(){
+    public void runCommand(){
     }
 
     public List<String> getUpdates() {

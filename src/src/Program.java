@@ -13,11 +13,11 @@ public class Program {
     private List<String> comments;
 
     //Methods
-     public void addCredit(credits){
+     public void addCredit(){
 
      }
 
-     public void removeCredit(credits){
+     public void removeCredit(){
 
      }
     public void getCredits(){
@@ -29,7 +29,7 @@ public class Program {
     public void incViews(){
 
     }
-    public calculateRatings(){
+    public void calculateRatings(){
         
     }
 }
