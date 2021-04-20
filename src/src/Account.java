@@ -19,10 +19,15 @@ public class Account extends User{
 
     // Methods
     public void runCommand(String input){
-        System.out.println("her");
+        switch (input){
+            case "logout" ->logout();
+            case "add to favorite" ->addToFavorites();
+            default -> super.runCommand(input);
+        }
     }
-    public void logout(){
 
+    public void logout(){
+        DBMS.currentUser = new Visitor();
     }
 
     public  void addToFavorites(){
@@ -36,5 +41,8 @@ public class Account extends User{
     }
     public  void comment(){
 
+    }
+    public String getPassword(){
+        return password;
     }
 }

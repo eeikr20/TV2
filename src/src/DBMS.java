@@ -1,6 +1,6 @@
 public class DBMS {
     //Attributes
-    private User currentUser;
+    public static User currentUser;
     private boolean run;
 
     //constructor
@@ -40,5 +40,8 @@ public class DBMS {
     }
     private void searchByRating(){
 
+    }
+    public void setCurrentUser(User user){
+        this.currentUser = user;
     }
 }

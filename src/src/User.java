@@ -6,7 +6,7 @@ public class User {
     }
 
     public void runCommand(String s){
-
+        System.out.println("invalid input");
     }
 
 
