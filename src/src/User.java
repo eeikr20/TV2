@@ -5,8 +5,11 @@ public class User {
         this.type = type;
     }
 
-    public void runCommand(String s){
-        System.out.println("invalid input");
+    public void runCommand(String input){
+        switch (input){
+            case "view program" ->viewPrograms();
+            default -> System.out.println("invalid input");
+        }
     }
 
 
@@ -30,6 +33,10 @@ public class User {
 
     public void searchByRating(){
 
+    }
+
+    public String getType(){
+        return type;
     }
 
 

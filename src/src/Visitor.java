@@ -24,7 +24,8 @@ public class Visitor extends User{
         System.out.println("Please enter password");
         String password = DB.scanner.nextLine();
         if (((Account)DB.users.get(name)).getPassword().equals(password)){
-            DBMS.currentUser = new Account("account",name,password);
+            //DBMS.currentUser = new Account("account",name,password);
+            DBMS.currentUser = DB.users.get(name);
         }
 
     }

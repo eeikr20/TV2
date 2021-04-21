@@ -10,6 +10,7 @@ public class DBMS {
     }
     //Methods
     public void runCommand(){
+        initTest();
         while (run){
             System.out.println("Awaiting input");
             String s = DB.scanner.nextLine();
@@ -43,5 +44,13 @@ public class DBMS {
     }
     public void setCurrentUser(User user){
         this.currentUser = user;
+    }
+
+    public void initTest() {
+        Producer producer = new Producer("producer", "navn", "navn");
+        DB.users.put("navn", producer);
+
+        Administrator administrator = new Administrator("administrator", "name", "name");
+        DB.users.put("name", administrator);
     }
 }
