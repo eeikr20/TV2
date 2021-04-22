@@ -9,6 +9,7 @@ public class Producer extends Account {
     private ArrayList<String> newUpdates;
     private HashMap<String, Program> owner;
     private HashMap<String, Program> tempOwner;
+    private HashMap<String, Cast> tempCast;
 
     public Producer(String type, String name, String password){
         super(type, name, password);
@@ -16,6 +17,7 @@ public class Producer extends Account {
         this.newUpdates = new ArrayList<>();
         this.owner = new HashMap<>();
         this.tempOwner = new HashMap<>();
+        this.tempCast= new HashMap<>();
     }
 
     //Methods
@@ -26,6 +28,8 @@ public class Producer extends Account {
             case "add program" ->addProgram();
             case "read updates" ->readUpdates();
             case "delete updates" ->eraseUpdates();
+            case "create cast" ->createCast();
+            case "add cast" ->addCast();
             default -> super.runCommand(input);
         }
     }
@@ -55,10 +59,6 @@ public class Producer extends Account {
         ((Administrator)DB.users.get(name)).addUpdate(msg);
     }
 
-    public void createCast(){
-    }
-    public void addCast(){
-    }
 
     public void addUpdate(String update) {
         updates.add(update);
@@ -89,4 +89,51 @@ public class Producer extends Account {
         newUpdates.clear();
         updates.clear();
     }
+
+    private void createCast(){
+        System.out.println("What is the name of the cast?");
+        String name = DB.scanner.nextLine();
+        Cast cast = new Cast (name);
+        tempCast.put(name, cast);
+        updateAdmin("Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
+    }
+
+    public HashMap<String, Cast> getTempCast() {
+        return tempCast;
+    }
+
+    private void addCast(){
+        System.out.println("What is the name of the program?");
+        String program= DB.scanner.nextLine();
+        Program p;
+        if (owner.containsKey(program)){
+            p=owner.get(program);
+        }
+        else if(tempOwner.containsKey(program)){
+            p=tempOwner.get(program);
+        }
+        else {
+            System.out.println("You do not have access to the program");
+            return;
+        }
+        System.out.println("What is the name of the cast?");
+        String cast= DB.scanner.nextLine();
+        Cast c;
+        if (DB.casts.containsKey(cast)){
+            c = DB.casts.get(cast);
+        }
+        else if(tempCast.containsKey(cast)){
+            c = tempCast.get(cast);
+        }
+        else {
+            System.out.println("That cast does not exist");
+            return;
+        }
+        System.out.println("What was the role of the cast?");
+        String role =DB.scanner.nextLine();
+        Role r = new Role (p, c, role);
+        p.addCredit(role, r);
+        c.addRole(program, r);
+    }
+
 }

@@ -24,18 +24,18 @@ public class Program {
         DB.count = DB.count + 1;
 
     }
+    public HashMap<String, Role> getCredits(){
+        return credits;
+    }
 
     //Methods
-     public void addCredit(){
-
+     public void addCredit(String name, Role role){
+        credits.put(name, role);
      }
 
      public void removeCredit(){
 
      }
-    public void getCredits(){
-
-    }
     public void getRating(){
 
     }
