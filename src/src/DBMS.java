@@ -47,10 +47,10 @@ public class DBMS {
     }
 
     public void initTest() {
-        Producer producer = new Producer("producer", "navn", "navn");
-        DB.users.put("navn", producer);
+        Producer producer = new Producer("producer", "producer", "producer");
+        DB.users.put("producer", producer);
 
-        Administrator administrator = new Administrator("administrator", "name", "name");
-        DB.users.put("name", administrator);
+        Administrator administrator = new Administrator("administrator", "admin", "admin");
+        DB.users.put("admin", administrator);
     }
 }
