@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HomeScreen">
+   <children>
+      <TextField id="searchBar" layoutX="35.0" layoutY="35.0" prefHeight="25.0" prefWidth="275.0" />
+      <ListView id="searchList" layoutX="35.0" layoutY="120.0" prefHeight="223.0" prefWidth="275.0" />
+      <ScrollBar layoutX="310.0" layoutY="120.0" orientation="VERTICAL" prefHeight="223.0" prefWidth="10.0" />
+      <Button id="homeLogIn" layoutX="491.0" layoutY="35.0" mnemonicParsing="false" text="Log In" />
+      <Button id="homeSignIn" layoutX="490.0" layoutY="73.0" mnemonicParsing="false" text="Sign In" />
+      <Label layoutX="141.0" layoutY="14.0" text="Search here" />
+      <RadioButton layoutX="35.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
+      <RadioButton layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
+   </children>
+</AnchorPane>

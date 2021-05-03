@@ -6,7 +6,7 @@ public class Program {
     //Attributes
     private int id;
     private String name;
-    private HashMap<String, Role> credits;
+    private HashMap<String,Role> credits;
     private int views;
     private float rating;
     private int ratingSum;
@@ -14,7 +14,7 @@ public class Program {
     private List<String> comments;
 
     public Program(String name) {
-        this.credits = new HashMap<>();
+        this.credits = new HashMap<String,Role>();
         this.views = 0;
         this.rating = -1;
         this.ratingSum = 0;
