@@ -17,6 +17,7 @@ public class Main extends Application {
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();
+
     }
 
 
