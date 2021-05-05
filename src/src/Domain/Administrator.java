@@ -1,3 +1,5 @@
+package Domain;
+
 public class Administrator extends Producer {
     //Attributes
     private String name;

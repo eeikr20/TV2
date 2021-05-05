@@ -1,7 +1,7 @@
+package Domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class Producer extends Account {
     //Attributes
@@ -39,7 +39,7 @@ public class Producer extends Account {
         String name = DB.scanner.nextLine();
         Program program = new Program(name);
 
-        updateAdmin("Producer:" + super.getName() + " has added a program: " + name + " you must verify.");
+        updateAdmin("Domain.Producer:" + super.getName() + " has added a program: " + name + " you must verify.");
         tempOwner.put(name, program);
     }
 
@@ -95,7 +95,7 @@ public class Producer extends Account {
         String name = DB.scanner.nextLine();
         Cast cast = new Cast (name);
         tempCast.put(name, cast);
-        updateAdmin("Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
+        updateAdmin("Domain.Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
     }
 
     public HashMap<String, Cast> getTempCast() {

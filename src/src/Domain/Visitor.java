@@ -1,3 +1,5 @@
+package Domain;
+
 public class Visitor extends User{
 
     public Visitor(){
@@ -17,14 +19,14 @@ public class Visitor extends User{
         System.out.println("Please enter username");
         String name = DB.scanner.nextLine();
         if (!DB.users.containsKey(name)){
-            System.out.println("User does not exist");
+            System.out.println("Domain.User does not exist");
             return;
 
         }
         System.out.println("Please enter password");
         String password = DB.scanner.nextLine();
         if (((Account)DB.users.get(name)).getPassword().equals(password)){
-            //DBMS.currentUser = new Account("account",name,password);
+            //Domain.DBMS.currentUser = new Domain.Account("account",name,password);
             DBMS.currentUser = DB.users.get(name);
         }
 
@@ -34,7 +36,7 @@ public class Visitor extends User{
         System.out.println("Please enter username");
         String name = DB.scanner.nextLine();
         if (DB.users.containsKey(name)){
-            System.out.println("User already exist");
+            System.out.println("Domain.User already exist");
         }
         else{
             System.out.println("Please enter a password");

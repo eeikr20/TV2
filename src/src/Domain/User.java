@@ -1,3 +1,5 @@
+package Domain;
+
 public class User {
     private String type;
 

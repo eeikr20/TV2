@@ -2,14 +2,13 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/HomeScreen.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/HomeScreen.fxml"));
         Scene scene = new Scene(root, 600, 400);
 
         stage.setTitle("Home Screen");

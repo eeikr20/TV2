@@ -1,3 +1,5 @@
+package Domain;
+
 public class DBMS {
     //Attributes
     public static User currentUser;

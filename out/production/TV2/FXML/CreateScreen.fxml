@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreateScreen">
+   <children>
+      <TextField id="createProgramTitle" layoutX="80.0" layoutY="148.0" />
+      <Label layoutX="120.0" layoutY="107.0" text="Domain.Program Title" />
+      <TextField id="createProducerName" layoutX="82.0" layoutY="236.0" />
+      <Label layoutX="108.0" layoutY="192.0" text="Name of Domain.Producer" />
+      <TextField layoutX="80.0" layoutY="323.0" />
+      <Label layoutX="113.0" layoutY="296.0" text="Name of Admin" />
+      <ListView id="listCast" layoutX="327.0" layoutY="148.0" prefHeight="200.0" prefWidth="219.0" />
+      <ScrollBar layoutX="548.0" layoutY="148.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="14.0" />
+      <TextField layoutX="327.0" layoutY="82.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="347.0" layoutY="49.0" text="Name of Domain.Cast" />
+      <TextField layoutX="450.0" layoutY="82.0" prefHeight="25.0" prefWidth="112.0" />
+      <Label layoutX="474.0" layoutY="49.0" text="Domain.Role of Domain.Cast" />
+   </children>
+</AnchorPane>
