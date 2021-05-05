@@ -20,14 +20,6 @@ import java.io.IOException;
 
 public class HomeScreen {
 
-    @FXML
-    private Button btSignIn;
-    @FXML
-    private Button btlogin;
-    @FXML
-    private TextField searchBar;
-    @FXML
-    private ListView searchList;
 
 
 
