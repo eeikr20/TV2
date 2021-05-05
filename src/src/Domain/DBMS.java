@@ -1,9 +1,32 @@
 package Domain;
 
-public class DBMS {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class DBMS extends Application {
     //Attributes
     public static User currentUser;
     private boolean run;
+    private static Stage stage;
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        DBMS.stage = stage;
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/HomeScreen.fxml"));
+        Scene scene = new Scene(root, 600, 400);
+
+        stage.setTitle("Home Screen");
+        stage.setScene(scene);
+        stage.show();
+    }
+    public void launcher(){launch();}
+
+    public static Stage getStage() {
+        return stage;
+    }
 
     //constructor
     public DBMS(){
