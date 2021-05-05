@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    public  Stage stage;
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/HomeScreen.fxml"));
@@ -14,10 +16,19 @@ public class Main extends Application {
         stage.setTitle("Home Screen");
         stage.setScene(scene);
         stage.show();
+
     }
 
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }
