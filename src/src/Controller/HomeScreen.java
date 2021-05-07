@@ -32,11 +32,21 @@ public class HomeScreen {
         MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
     }
     @FXML
+    void create(MouseEvent event) throws IOException {
+
+        MainFX.setScene(getClass().getResource("/FXML/CreateScreen.fxml"), "Create" );
+
+    }
+    @FXML
     void searchBar(ActionEvent event){
 
     }
     @FXML
     void signIn(ActionEvent event){
+
+
+        MainFX.setScene(getClass().getResource("SignUpScreen.fxml"), "Sign Up" );
+
 
     }
 

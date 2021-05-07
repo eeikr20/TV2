@@ -13,7 +13,7 @@
       <Label layoutX="141.0" layoutY="14.0" text="Search here" />
       <RadioButton layoutX="35.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
       <RadioButton layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
-      <Button id="homeLogIn" fx:id="btCreate" layoutX="491.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#CreateScreen" text="Create" />
+      <Button id="homeLogIn" fx:id="btCreate" layoutX="491.0" layoutY="331.0" mnemonicParsing="false" onMouseClicked="#create" text="Create" />
       <Button id="homeLogIn" fx:id="btLogOut" layoutX="487.0" layoutY="70.0" mnemonicParsing="false" onMouseClicked="#logOut" text="Log Out" />
    </children>
 </AnchorPane>
