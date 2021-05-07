@@ -3,7 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CreateScreen">
    <children>
       <TextField id="createProgramTitle" layoutX="80.0" layoutY="148.0" />
@@ -18,5 +17,6 @@
       <Label layoutX="347.0" layoutY="49.0" text="Name of Domain.Cast" />
       <TextField layoutX="450.0" layoutY="82.0" prefHeight="25.0" prefWidth="112.0" />
       <Label layoutX="474.0" layoutY="49.0" text="Domain.Role of Domain.Cast" />
+      <Button fx:id="btExit" layoutX="54.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />
    </children>
 </AnchorPane>
