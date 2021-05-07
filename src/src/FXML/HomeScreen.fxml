@@ -9,7 +9,7 @@
       <ListView id="searchList" layoutX="35.0" layoutY="120.0" prefHeight="223.0" prefWidth="275.0" />
       <ScrollBar layoutX="310.0" layoutY="120.0" orientation="VERTICAL" prefHeight="223.0" prefWidth="10.0" />
       <Button id="homeLogIn" fx:id="btLogIn" layoutX="491.0" layoutY="35.0" mnemonicParsing="false" onMouseClicked="#logIn" text="Log In" />
-      <Button id="homeSignIn" fx:id="btSignIn" layoutX="490.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#signIn" text="Sign In" />
+      <Button id="homeSignIn" fx:id="btSignUp" layoutX="490.0" layoutY="108.0" mnemonicParsing="false" onMouseClicked="#signUp" text="Sign Up" />
       <Label layoutX="141.0" layoutY="14.0" text="Search here" />
       <RadioButton layoutX="35.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
       <RadioButton layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />

@@ -1,19 +1,10 @@
 package Controller;
 
-import Domain.DBMS;
-import com.sun.tools.javac.Main;
+
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.*;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import Domain.DB;
+
 import java.io.IOException;
 
 
@@ -43,10 +34,10 @@ public class HomeScreen {
 
     }
     @FXML
-    void signIn(MouseEvent event) throws IOException{
+    void signUp(MouseEvent event) throws IOException{
 
 
-        MainFX.setScene(getClass().getResource("SignUpScreen.fxml"), "Sign Up" );
+        MainFX.setScene(getClass().getResource("/FXML/SignUpScreen.fxml"), "Sign Up" );
 
 
     }
