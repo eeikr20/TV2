@@ -37,6 +37,7 @@ public class HomeScreen {
         MainFX.setScene(getClass().getResource("/FXML/CreateScreen.fxml"), "Create" );
 
     }
+
     @FXML
     void searchBar(ActionEvent event){
 
