@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import Domain.DB;
-
 import java.io.IOException;
 
 
@@ -22,19 +21,15 @@ public class HomeScreen {
 
 
 
-
-
     @FXML
     void logIn(MouseEvent event) throws IOException {
 
-        FXMLLoader root = new FXMLLoader(getClass().getResource("/FXML/LogInScreen.fxml"));
-        Scene scene = new Scene(root.load(), 600, 400);
+        MainFX.setScene(getClass().getResource("/FXML/LogInScreen.fxml"), "Log In" );
 
-        Stage stage = DBMS.getStage();
-        stage.setTitle("Log In");
-        stage.setScene(scene);
-        stage.show();
-
+    }
+    @FXML
+    void logOut(){
+        MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
     }
     @FXML
     void searchBar(ActionEvent event){
@@ -44,6 +39,7 @@ public class HomeScreen {
     void signIn(ActionEvent event){
 
     }
+
 
 
 }
