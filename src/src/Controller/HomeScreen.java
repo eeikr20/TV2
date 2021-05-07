@@ -43,7 +43,7 @@ public class HomeScreen {
 
     }
     @FXML
-    void signIn(ActionEvent event) throws IOException{
+    void signIn(MouseEvent event) throws IOException{
 
 
         MainFX.setScene(getClass().getResource("SignUpScreen.fxml"), "Sign Up" );
