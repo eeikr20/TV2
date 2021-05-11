@@ -1,21 +1,6 @@
 package Domain;
 
-public class User {
-    private String type;
-
-    public User(String type){
-        this.type = type;
-    }
-
-    public void runCommand(String input){
-        switch (input){
-            case "view programs" -> viewPrograms();
-            case "view casts" ->viewCast();
-            case "view cast roles" ->viewCastCredits();
-            case "view program credits" -> viewProgramCredits();
-            default -> System.out.println("invalid input");
-        }
-    }
+public class Search {
     public void viewCast(){
         DBMS.postgresDB.viewCast();
     }
@@ -48,27 +33,4 @@ public class User {
         }
         //todo use db
     }
-
-    public void searchPrograms(){
-
-    }
-
-    public void searchPeople(){
-
-    }
-
-    public void searchByViews(){
-
-    }
-
-    public void searchByRating(){
-
-    }
-
-    public String getType(){
-        return type;
-    }
-
-
-
 }

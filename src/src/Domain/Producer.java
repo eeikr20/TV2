@@ -41,6 +41,7 @@ public class Producer extends Account {
 
         updateAdmin("Domain.Producer:" + super.getName() + " has added a program: " + name + " you must verify.");
         tempOwner.put(name, program);
+        //todo remove usage of old db
     }
 
     public void updateAdmin(String msg) {
@@ -57,6 +58,7 @@ public class Producer extends Account {
         }
 
         ((Administrator)DB.users.get(name)).addUpdate(msg);
+
     }
 
 
@@ -96,6 +98,7 @@ public class Producer extends Account {
         Cast cast = new Cast (name);
         tempCast.put(name, cast);
         updateAdmin("Domain.Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
+        //todo remove usage of old db
     }
 
     public HashMap<String, Cast> getTempCast() {

@@ -3,7 +3,7 @@ package Domain;
 import java.util.List;
 
 public class Account extends User{
-    // Atributes
+    // Attributes
     private String name;
     private int id;
     private String password;
@@ -17,6 +17,7 @@ public class Account extends User{
         this.id = DB.count;
         DB.count = DB.count + 1;
 
+        //DBMS.postgresDB.query("INSERT INTO users VALUES ('" + name + "','" + password + "'," + id + ",'" + type +  "');");
     }
 
     // Methods
@@ -29,7 +30,9 @@ public class Account extends User{
     }
 
     public void logout(){
+        //todo remove old db
         DBMS.currentUser = new Visitor();
+        DBMS.currentCustomer.resetCustomer("", "", 0, "visitor");
     }
 
     public  void addToFavorites(){

@@ -1,19 +1,6 @@
 package Domain;
 
-public class Visitor extends User{
-
-    public Visitor(){
-        super("visitor");
-    }
-
-    public void runCommand(String input){
-        switch (input){
-            case "login" ->login();
-            case "signup" ->signUp();
-            default -> super.runCommand(input);
-        }
-    }
-
+public class Login {
     public void login(){
         System.out.println("Please enter username");
         String name = DB.scanner.nextLine();
@@ -50,6 +37,9 @@ public class Visitor extends User{
         }
         //todo remove db usage
     }
-
-
+    public void logout(){
+        //todo remove old db
+        DBMS.currentUser = new Visitor();
+        DBMS.currentCustomer.resetCustomer("", "", 0, "visitor");
+    }
 }

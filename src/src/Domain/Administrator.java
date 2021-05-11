@@ -42,6 +42,7 @@ public class Administrator extends Producer {
         DB.casts.put(cast, c);
         ((Producer)DB.users.get(name)).getTempCast().remove(cast);
         ((Producer)DB.users.get(name)).addUpdate("The cast: " + cast + " has been verified and added.");
+        //todo update to use database
     }
     public void verifyProgram(){
         System.out.println("Who is the producer of this document?");
@@ -76,8 +77,7 @@ public class Administrator extends Producer {
             ((Producer) DB.users.get(name)).removeFromTempOwner(programName); //Removes from tempOwner list
             ((Producer) DB.users.get(name)).addUpdate("The document: " + programName + " has been verified and added.");
         }
-
-
+        //todo update to use database
     }
 
     private void createSuperUser(){
@@ -101,5 +101,8 @@ public class Administrator extends Producer {
         if(user!=null){
             DB.users.put(name, user);
         }
+
+        DBMS.postgresDB.query("INSERT INTO users VALUES ('" + name + "','" + password + "'," + DB.count + ",'" + type + "');");
+        //todo check for existing users in the db
     }
 }

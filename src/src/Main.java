@@ -16,6 +16,7 @@ public class Main  {
     public static void main(String[] args) {
         DBMS start = new DBMS();
         start.launcher();
+        start.runCommand();
     }
 
 //    public Stage getStage() {
