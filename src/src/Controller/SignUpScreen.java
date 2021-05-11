@@ -30,7 +30,7 @@ public class SignUpScreen {
     @FXML
     void exit(MouseEvent event) throws IOException {
 
-        MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen" );
+        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Home Screen" );
 
     }
 }

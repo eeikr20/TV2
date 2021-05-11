@@ -17,7 +17,7 @@ public class LogInScreen {
     @FXML
     void exit(MouseEvent event) throws IOException {
 
-        MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen" );
+        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Search for program" );
 
     }
     @FXML
@@ -35,7 +35,7 @@ public class LogInScreen {
          */
             // Set current user to account the correct crudential is ergo. Admin or producer or account
         // perhaps a popup screen to display succesfully on login
-        MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen" );
+        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Home Screen" );
 
     }
 
