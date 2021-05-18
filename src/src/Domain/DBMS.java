@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 public class DBMS extends Application {
     //Attributes
-    public static User currentUser;
+    //public static User currentUser;
     public static Customer currentCustomer;
     private boolean run;
     private static Stage stage;
@@ -36,7 +36,7 @@ public class DBMS extends Application {
     public DBMS(){
         this.run = true;
         //todo update current user?
-        this.currentUser = new Visitor();
+        //this.currentUser = new Visitor();
         this.currentCustomer = new Customer("", "", 0, "visitor");
         //this.postgresDB = new PostgresDB();
     }
@@ -83,22 +83,29 @@ public class DBMS extends Application {
     private void searchByRating(){
 
     }
+    /*
     public void setCurrentUser(User user){
         this.currentUser = user;
     }
-
+*/
     public void initTest() {
-        Producer producer = new Producer("producer", "producer", "producer");
-        DB.users.put("producer", producer);
+        //Producer producer = new Producer("producer", "producer", "producer");
+        //DB.users.put("producer", producer);
         postgresDB.query("INSERT INTO users VALUES ('producer','producer',0,'producer');");
 
-        Administrator administrator = new Administrator("administrator", "admin", "admin");
-        DB.users.put("admin", administrator);
+        //Administrator administrator = new Administrator("administrator", "admin", "admin");
+        //DB.users.put("admin", administrator);
         postgresDB.query("INSERT INTO users VALUES ('admin','admin',0,'administrator');");
 
         Program p1 = new Program("Star Wars");
         Program p2 = new Program("Lord of the Rings");
-        DB.programs.put("Star Wars", p1);
-        DB.programs.put("Lord of the Rings", p2);
+
+        DBMS.postgresDB.query("INSERT INTO casts VALUES ('Mark Hamill', DEFAULT, 1, TRUE)");
+        new Role("Star Wars", "Mark Hamill", "Luke Skywalker");
+        DBMS.postgresDB.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE)");
+        new Role("Star Wars", "Harrison Ford", "Han Solo");
+
+        //DB.programs.put("Star Wars", p1);
+        //DB.programs.put("Lord of the Rings", p2);
     }
 }

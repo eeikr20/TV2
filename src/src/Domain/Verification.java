@@ -1,24 +1,7 @@
 package Domain;
 
-public class Administrator extends Producer {
-    //Attributes
-    private String name;
-    private int id;
-
-
-    public Administrator(String type, String name, String password){
-        super(type, name, password);
-    }
-
-    //Methods
-    public void runCommand(String input){
-        switch (input){
-            case "verify program" ->verifyProgram();
-            case "create super user" ->createSuperUser();
-            case "verify cast" -> verifyCast();
-            default -> super.runCommand(input);
-        }
-    }
+public class Verification {
+    /*
     public void verifyCast(){
         System.out.println("Who is the producer that created the cast?");
         String name = DB.scanner.nextLine();
@@ -79,30 +62,5 @@ public class Administrator extends Producer {
         }
         //todo update to use database
     }
-
-    private void createSuperUser(){
-        System.out.println("What is the name of the user?");
-        String name = DB.scanner.nextLine();
-        if (DB.users.containsKey(name)){
-            System.out.println("That user is already taken");
-            return;
-        }
-        System.out.println("What is the users password");
-        String password = DB.scanner.nextLine();
-        System.out.println("What user type are you creating?");
-        User user= null;
-        String type = DB.scanner.nextLine();
-        switch (type){
-            case "producer" -> user= new Producer(type, name, password);
-            case "administrator"->user =new Administrator(type, name, password);
-            case "account"->user= new Account(type, name, password);
-            default -> System.out.println("That is not a valid type");
-        }
-        if(user!=null){
-            DB.users.put(name, user);
-        }
-
-        DBMS.postgresDB.query("INSERT INTO users VALUES ('" + name + "','" + password + "'," + DB.count + ",'" + type + "');");
-        //todo check for existing users in the db
-    }
+    */
 }

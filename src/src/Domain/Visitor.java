@@ -1,7 +1,7 @@
 package Domain;
 
-public class Visitor extends User{
-
+public class Visitor {
+/*
     public Visitor(){
         super("visitor");
     }
@@ -51,5 +51,5 @@ public class Visitor extends User{
         //todo remove db usage
     }
 
-
+*/
 }

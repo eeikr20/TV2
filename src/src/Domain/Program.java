@@ -21,10 +21,10 @@ public class Program {
         this.ratingSum = 0;
         this.ratingTimes = 0;
         this.name = name;
-        this.id = DB.count;
-        DB.count = DB.count + 1;
+        //this.id = DB.count;
+        //DB.count = DB.count + 1;
 
-        DBMS.postgresDB.query("INSERT INTO program VALUES ('" + name + "'," + id + ",0, FALSE);");
+        DBMS.postgresDB.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE)");
     }
     public HashMap<String, Role> getCredits(){
         return credits;

@@ -16,13 +16,13 @@ public class Cast {
 
     public Cast (String name){
         this.name = name;
-        this.id = DB.count;
-        DB.count = DB.count + 1;
+        //this.id = DB.count;
+        //DB.count = DB.count + 1;
         role = new HashMap<>();
         this.views =0;
         this.ratings = -1;
         //todo get the id of the owner instread of 0 as id
-        DBMS.postgresDB.query("INSERT INTO casts VALUES ('" + name + "', " + id + ", " + 0 + ", FALSE)");
+        DBMS.postgresDB.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE)");
     }
     public void addRole(String name, Role role){
         this.role.put(name, role);

@@ -1,9 +1,7 @@
 package Domain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public class Producer extends Account {
+public class Producer {
+    /*
     //Attributes
     private ArrayList<String> updates;
     private ArrayList<String> newUpdates;
@@ -138,5 +136,5 @@ public class Producer extends Account {
         p.addCredit(role, r);
         c.addRole(program, r);
     }
-
+*/
 }
