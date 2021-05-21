@@ -1,12 +1,17 @@
 package Controller;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
-public class HomeScreen {
+
+public class ConsumerView {
+
+
+
     @FXML
     void logIn(MouseEvent event) throws IOException {
 
@@ -16,16 +21,7 @@ public class HomeScreen {
     @FXML
     void exit() throws IOException {
         MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
-
     }
-
-    @FXML
-    void goNext(MouseEvent event) throws IOException {
-
-        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Search for program" );
-
-    }
-
     @FXML
     void create(MouseEvent event) throws IOException {
 
@@ -45,4 +41,7 @@ public class HomeScreen {
 
 
     }
+
+
+
 }
