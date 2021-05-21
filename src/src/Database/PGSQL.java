@@ -1,8 +1,5 @@
 package Database;
 
-import Domain.DB;
-import Domain.Program;
-
 import java.sql.*;
 
 public class PGSQL {
