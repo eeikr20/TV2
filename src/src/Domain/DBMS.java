@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 
 import java.util.Scanner;
 
-public class DBMS extends Application {
+//public class DBMS extends Application {
+public class DBMS {
     //Attributes
     //public static User currentUser;
     public static Customer currentCustomer;
