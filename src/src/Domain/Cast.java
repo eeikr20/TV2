@@ -21,15 +21,16 @@ public class Cast {
         role = new HashMap<>();
         this.views =0;
         this.ratings = -1;
-        //todo get the id of the owner instread of 0 as id
-        DBMS.postgresDB.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE)");
+
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE, 0)");
     }
+    /*
     public void addRole(String name, Role role){
         this.role.put(name, role);
         //todo get the id of the program instread of 0 as id
         DBMS.postgresDB.query("INSERT INTO credit VALUES (" + 0 +", " + id + ", '" + role +"')");
     }
-
+*/
     public String getName() {
         return name;
     }

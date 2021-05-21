@@ -1,17 +1,14 @@
 package Domain;
 
-import java.util.HashMap;
-
 public class Crediting {
     Notification notification = new Notification();
 
     public void addProgram(){
         System.out.println("What is the name of your program?");
-        String name = DB.scanner.nextLine();
+        String name = DBMS.scanner.nextLine();
         Program program = new Program(name);
 
-        //todo notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a program: " + name + " you must verify.");
-        //DBMS.postgresDB.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE)");
+        notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a program: " + name + " you must verify.");
         //todo update to GUI
     }
     /*
@@ -30,12 +27,12 @@ public class Crediting {
     */
     public void createCast(){
         System.out.println("What is the name of the cast?");
-        String name = DB.scanner.nextLine();
+        String name = DBMS.scanner.nextLine();
         Cast cast = new Cast (name);
         //tempCast.put(name, cast);
         //notification.updateAdmin("Domain.Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
 
-        //todo notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a cast: " + name + " you must verify.");
+        notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a cast: " + name + " you must verify.");
 
         //DBMS.postgresDB.query("INSERT INTO program casts ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", 0)");
 
@@ -48,17 +45,17 @@ public class Crediting {
     */
     public void addCast(){
         System.out.println("What is the name of the program?");
-        String program= DB.scanner.nextLine();
+        String program= DBMS.scanner.nextLine();
         Program p;
 
-        if(DBMS.postgresDB.sqlContains("select count(*) from program where name = '" + program + "'")==0){
+        if(DBMS.pgSQL.sqlContains("select count(*) from program where name = '" + program + "'")==0){
             System.out.println("That program does not exist");
             return;
         }
 
         //int id = DBMS.postgresDB.getID("select id from program where name = '" + program +"'");
 
-        if(DBMS.currentCustomer.id != DBMS.postgresDB.getID("select owner from program where name = '" + program +"'")){
+        if(DBMS.currentCustomer.id != DBMS.pgSQL.getID("select owner from program where name = '" + program +"'")){
             System.out.println("You do not have access to the program");
             return;
         }
@@ -75,17 +72,17 @@ public class Crediting {
         }
         */
         System.out.println("What is the name of the cast?");
-        String cast= DB.scanner.nextLine();
+        String cast= DBMS.scanner.nextLine();
         Cast c;
-        if(DBMS.postgresDB.sqlContains("select count(*) from casts where name = '" + cast + "'")==0){
+        if(DBMS.pgSQL.sqlContains("select count(*) from casts where name = '" + cast + "'")==0){
             System.out.println("That cast does not exist");
             return;
         }
         System.out.println(DBMS.currentCustomer.id);
-        System.out.println(DBMS.postgresDB.getID("select owner from casts where name = '" + cast +"'"));
-        System.out.println(DBMS.postgresDB.getVerification("select verified from casts where name = '" + cast +"'"));
+        System.out.println(DBMS.pgSQL.getID("select owner from casts where name = '" + cast +"'"));
+        System.out.println(DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'"));
 
-        if(DBMS.currentCustomer.id != DBMS.postgresDB.getID("select owner from casts where name = '" + cast +"'") && !DBMS.postgresDB.getVerification("select verified from casts where name = '" + cast +"'")){
+        if(DBMS.currentCustomer.id != DBMS.pgSQL.getID("select owner from casts where name = '" + cast +"'") && !DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'")){
             System.out.println("You can not use this cast");
             return;
         }
@@ -102,7 +99,7 @@ public class Crediting {
         }
         */
         System.out.println("What was the role of the cast?");
-        String role =DB.scanner.nextLine();
+        String role =DBMS.scanner.nextLine();
         new Role(program, cast, role);
         //Role r = new Role (p, c, role);
         //p.addCredit(role, r);

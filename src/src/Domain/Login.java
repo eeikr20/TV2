@@ -3,19 +3,19 @@ package Domain;
 public class Login {
     public void login(){
         System.out.println("Please enter username");
-        String name = DB.scanner.nextLine();
-        if(DBMS.postgresDB.sqlContains("select count(*) from users where name = '" + name + "'")==0){
+        String name = DBMS.scanner.nextLine();
+        if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")==0){
             System.out.println("User does not exist");
             return;
         }
         System.out.println("Please enter password");
-        String password = DB.scanner.nextLine();
-        String foundPassword = DBMS.postgresDB.getPassword("select password from users where name = '" + name + "'");
+        String password = DBMS.scanner.nextLine();
+        String foundPassword = DBMS.pgSQL.getPassword("select password from users where name = '" + name + "'");
         if(foundPassword.equals(password)){
             //int id = DBMS.postgresDB.getID("select id from usere where name = '" + name + "'");
             //String type = DBMS.postgresDB.getPassword("select type from usere where name = '" + name + "'");
             //DBMS.currentCustomer.resetCustomer(name, password, id, type);
-            String[] userData = DBMS.postgresDB.setUserData(name);
+            String[] userData = DBMS.pgSQL.setUserData(name);
             DBMS.currentCustomer.resetCustomer(userData[0], userData[1], Integer.valueOf(userData[2]), userData[3]);
         }
         /*
@@ -29,18 +29,18 @@ public class Login {
 
     public void signUp(){
         System.out.println("Please enter username");
-        String name = DB.scanner.nextLine();
-        if(DBMS.postgresDB.sqlContains("select count(*) from users where name = '" + name + "'")!=0){
+        String name = DBMS.scanner.nextLine();
+        if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")!=0){
             System.out.println("User already exist");
         }
         else{
             System.out.println("Please enter a password");
-            String password = DB.scanner.nextLine();
+            String password = DBMS.scanner.nextLine();
             //Account account = new Account("account", name, password);
             //DB.users.put(name,account);
 
             //DB.count = DB.count + 1;
-            DBMS.postgresDB.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
+            DBMS.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
         }
         //todo remove db usage
     }
@@ -51,16 +51,16 @@ public class Login {
     }
     public void createSuperUser(){
         System.out.println("What is the name of the user?");
-        String name = DB.scanner.nextLine();
-        if(DBMS.postgresDB.sqlContains("select count(*) from users where name = '" + name + "'")!=0){
+        String name = DBMS.scanner.nextLine();
+        if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")!=0){
             System.out.println("That user is already taken");
             return;
         }
         System.out.println("What is the users password");
-        String password = DB.scanner.nextLine();
+        String password = DBMS.scanner.nextLine();
         System.out.println("What user type are you creating?");
         //User user= null;
-        String type = DB.scanner.nextLine();
+        String type = DBMS.scanner.nextLine();
         /*
         switch (type){
             case "producer" -> user= new Producer(type, name, password);
@@ -72,7 +72,7 @@ public class Login {
             DB.users.put(name, user);
         }
         */
-        DBMS.postgresDB.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'" + type + "');");
+        DBMS.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'" + type + "');");
         //todo check for existing users in the db
     }
 }

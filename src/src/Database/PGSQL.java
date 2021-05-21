@@ -5,19 +5,21 @@ import Domain.Program;
 
 import java.sql.*;
 
-public class PostgresDB {
+public class PGSQL {
     Connection connection;
 
 
-    public PostgresDB() {
+    public PGSQL() {
         connection = connect();
         query("CREATE TABLE users(name TEXT, password TEXT, id SERIAL NOT NULL, type TEXT);");
         query("CREATE TABLE updates(msg TEXT, userid INTEGER, read BOOLEAN);");
         query("CREATE TABLE favorites(userid INTEGER, program INT);");
         query("CREATE TABLE history(userid INTEGER, program INTEGER);");
-        query("CREATE TABLE program(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN);");
-        query("CREATE TABLE casts(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN);");
+        query("CREATE TABLE program(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER, avgrating FLOAT);");
+        query("CREATE TABLE casts(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER);");
         query("CREATE TABLE credit(program INTEGER, castid INTEGER, role TEXT);");
+        query("CREATE TABLE comments(msg TEXT, userid INTEGER, program INTEGER);");
+        query("CREATE TABLE ratings(score INTEGER, userid INTEGER, program INTEGER);");
     }
 
     static Statement statement = null;
@@ -42,10 +44,24 @@ public class PostgresDB {
             e.printStackTrace();
         }
     }
+    public void readUpdates(int userID){
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT msg FROM updates WHERE userid = " + userID);
+            while (rs.next()){
+                System.out.println(rs.getString(1));
+            }
+            //UPDATE table_name SET twitter_handle = '@taylorswift13' WHERE id = 2;
+            query("UPDATE updates SET read = TRUE WHERE userid = " + userID);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
     public void viewPrograms(){
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT name FROM program");
+            ResultSet rs = statement.executeQuery("SELECT name FROM program WHERE verified = TRUE");
             while (rs.next()){
                 System.out.println(rs.getString(1));
             }
@@ -58,7 +74,7 @@ public class PostgresDB {
     public void viewCast(){
         try {
             statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT name FROM casts");
+            ResultSet rs = statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE");
             while (rs.next()){
                 System.out.println(rs.getString(1));
             }
@@ -87,6 +103,8 @@ public class PostgresDB {
         query("DROP TABLE program");
         query("DROP TABLE casts");
         query("DROP TABLE credit");
+        query("DROP TABLE comments");
+        query("DROP TABLE ratings");
     }
     public String[] setUserData(String name){
         String[] res = new String[4];
@@ -150,20 +168,16 @@ public class PostgresDB {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             rs.next();
-            System.out.println(rs.getString(1));
             if(rs.getString(1).contains("t")){
-                System.out.println("in if");
                 return true;
             }
             else {
-                System.out.println("in else");
                 return false;
             }
         }
         catch (SQLException e){
             e.printStackTrace();
         }
-        System.out.println("wrong place");
         return false;
     }
 

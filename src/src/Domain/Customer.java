@@ -27,7 +27,7 @@ public class Customer {
     public void runCommand(String input){
         switch (type){
             case "visitor" -> visitorCommand(input);
-            case "admin" ->adminCommand(input);
+            case "administrator" ->adminCommand(input);
             case "account" ->accountCommand(input);
             case "producer" ->producerCommand(input);
             default -> System.out.println("something is wrong in runCommand");
@@ -37,8 +37,8 @@ public class Customer {
     private void producerCommand(String input) {
         switch (input){
             case "add program" -> crediting.addProgram();
-            //case "read updates" -> notification.readUpdates();
-            //case "delete updates" -> notification.eraseUpdates();
+            case "read updates" -> notification.readUpdates(id);
+            case "delete updates" -> notification.eraseUpdates(id);
             case "create cast" -> crediting.createCast();
             case "add cast" -> crediting.addCast();
             default -> accountCommand(input);
@@ -57,9 +57,9 @@ public class Customer {
 
     private void adminCommand(String input){
         switch (input){
-            //case "verify program" -> verification.verifyProgram();
+            case "verify program" -> verification.verifyProgram();
             case "create super user" -> login.createSuperUser();
-            //case "verify cast" -> verification.verifyCast();
+            case "verify cast" -> verification.verifyCast();
             default -> producerCommand(input);
         }
     }

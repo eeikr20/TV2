@@ -24,7 +24,7 @@ public class Program {
         //this.id = DB.count;
         //DB.count = DB.count + 1;
 
-        DBMS.postgresDB.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE)");
+        DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE, 0, -1)");
     }
     public HashMap<String, Role> getCredits(){
         return credits;

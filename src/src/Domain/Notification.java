@@ -1,38 +1,35 @@
 package Domain;
 
 public class Notification {
-/*
-    public void readUpdates() {
-        for (String update: updates) {
-            System.out.println(update);
-        }
-        newUpdates.clear();
+
+    public void readUpdates(int userID) {
+        DBMS.pgSQL.readUpdates(userID);
     }
 
-    public void eraseUpdates() {
-        newUpdates.clear();
-        updates.clear();
+    public void eraseUpdates(int userID) {
+        DBMS.pgSQL.query("DELETE FROM updates WHERE userid = " + userID);
     }
-    public void addUpdate(String update) {
-        updates.add(update);
-        newUpdates.add(update);
+
+    public void addUpdate(String update, int userID) {
+        DBMS.pgSQL.query("INSERT INTO updates VALUES ('" + update + "'," + userID + ", FALSE);");
     }
 
     public void updateAdmin(String msg) {
         System.out.println("what is the name of your admin?");
-        String name = DB.scanner.nextLine();
+        String name = DBMS.scanner.nextLine();
 
-        if (!DB.users.containsKey(name)) {
-            System.err.println("That admin does not exist.");
+        if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")==0){
+            System.out.println("That user does nor exist");
             return;
         }
-        if (!DB.users.get(name).getType().equals("administrator")) {
-            System.err.println("That admin does not exist.");
+        String foundType = DBMS.pgSQL.getPassword("select type from users where name = '" + name + "'");
+        if(!foundType.equals("administrator")){
+            System.out.println("That user is not a administrator");
             return;
         }
+        int adminID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + name + "'");
 
-        ((Administrator)DB.users.get(name)).addUpdate(msg);
-
+        DBMS.currentCustomer.notification.addUpdate(msg, adminID);
     }
-    */
+
 }

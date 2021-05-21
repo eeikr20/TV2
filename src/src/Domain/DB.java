@@ -15,6 +15,6 @@ public class DB {
     public static Stage stage1;
     //Methods
 */
-    public static Scanner scanner = new Scanner(System.in);
+    //public static Scanner scanner = new Scanner(System.in);
 
 }

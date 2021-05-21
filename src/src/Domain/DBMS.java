@@ -1,11 +1,13 @@
 package Domain;
 
-import Database.PostgresDB;
+import Database.PGSQL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.Scanner;
 
 public class DBMS extends Application {
     //Attributes
@@ -13,7 +15,8 @@ public class DBMS extends Application {
     public static Customer currentCustomer;
     private boolean run;
     private static Stage stage;
-    public static PostgresDB postgresDB = new PostgresDB();
+    public static PGSQL pgSQL = new PGSQL();
+    public static Scanner scanner = new Scanner(System.in);
 
 
     @Override
@@ -42,8 +45,8 @@ public class DBMS extends Application {
     }
     //Methods
 
-    public static PostgresDB getPostgresDB() {
-        return postgresDB;
+    public static PGSQL getPgSQL() {
+        return pgSQL;
     }
 
     public void runCommand(){
@@ -51,7 +54,7 @@ public class DBMS extends Application {
         while (run){
             System.out.println("The customer is of type: " + currentCustomer.type);
             System.out.println("Awaiting input");
-            String s = DB.scanner.nextLine();
+            String s = scanner.nextLine();
             if (s.equals("end")){
                 run=false;
             }
@@ -62,8 +65,8 @@ public class DBMS extends Application {
         }
         System.out.println("farvel");
 
-        postgresDB.returnQuery("SELECT * FROM users");
-        postgresDB.clearDB();
+        pgSQL.returnQuery("SELECT * FROM users");
+        pgSQL.clearDB();
     }
     private void viewPrograms(){
 
@@ -91,18 +94,18 @@ public class DBMS extends Application {
     public void initTest() {
         //Producer producer = new Producer("producer", "producer", "producer");
         //DB.users.put("producer", producer);
-        postgresDB.query("INSERT INTO users VALUES ('producer','producer',0,'producer');");
+        pgSQL.query("INSERT INTO users VALUES ('producer','producer',-1,'producer');");
 
         //Administrator administrator = new Administrator("administrator", "admin", "admin");
         //DB.users.put("admin", administrator);
-        postgresDB.query("INSERT INTO users VALUES ('admin','admin',0,'administrator');");
+        pgSQL.query("INSERT INTO users VALUES ('admin','admin',-2,'administrator');");
 
         Program p1 = new Program("Star Wars");
         Program p2 = new Program("Lord of the Rings");
 
-        DBMS.postgresDB.query("INSERT INTO casts VALUES ('Mark Hamill', DEFAULT, 1, TRUE)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Mark Hamill', DEFAULT, 1, TRUE)");
         new Role("Star Wars", "Mark Hamill", "Luke Skywalker");
-        DBMS.postgresDB.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE)");
         new Role("Star Wars", "Harrison Ford", "Han Solo");
 
         //DB.programs.put("Star Wars", p1);
