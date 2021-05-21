@@ -1,5 +1,6 @@
 package Controller;
 
+import Domain.DBMS;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ import java.net.URL;
 public class MainFX extends Application {
 
     private static Stage stage;
+    public static DBMS db = new DBMS();
 
 
 
@@ -32,6 +34,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
+        //this.db = new DBMS();
         this.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
     }
 

@@ -31,6 +31,7 @@ public class DBMS {
         //this.currentUser = new Visitor();
         this.currentCustomer = new Customer("", "", 0, "visitor");
         //this.postgresDB = new PostgresDB();
+        initTest();
     }
     //Methods
 
@@ -75,11 +76,16 @@ public class DBMS {
     private void searchByRating(){
 
     }
-    /*
-    public void setCurrentUser(User user){
-        this.currentUser = user;
+
+    public Customer getCurrentCustomer() {
+        return currentCustomer;
     }
-*/
+
+    /*
+        public void setCurrentUser(User user){
+            this.currentUser = user;
+        }
+    */
     public void initTest() {
         //Producer producer = new Producer("producer", "producer", "producer");
         //DB.users.put("producer", producer);

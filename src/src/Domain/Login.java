@@ -1,15 +1,15 @@
 package Domain;
 
 public class Login {
-    public void login(){
-        System.out.println("Please enter username");
-        String name = DBMS.scanner.nextLine();
+    public void login(String name, String password){
+//        System.out.println("Please enter username");
+//        String name = DBMS.scanner.nextLine();
         if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")==0){
             System.out.println("User does not exist");
             return;
         }
-        System.out.println("Please enter password");
-        String password = DBMS.scanner.nextLine();
+//        System.out.println("Please enter password");
+//        String password = DBMS.scanner.nextLine();
         String foundPassword = DBMS.pgSQL.getPassword("select password from users where name = '" + name + "'");
         if(foundPassword.equals(password)){
             //int id = DBMS.postgresDB.getID("select id from usere where name = '" + name + "'");
@@ -18,6 +18,7 @@ public class Login {
             String[] userData = DBMS.pgSQL.setUserData(name);
             DBMS.currentCustomer.resetCustomer(userData[0], userData[1], Integer.valueOf(userData[2]), userData[3]);
         }
+        System.out.println("Success");
         /*
         if (((Account)DB.users.get(name)).getPassword().equals(password)){
             //Domain.DBMS.currentUser = new Domain.Account("account",name,password);
@@ -27,21 +28,22 @@ public class Login {
         //todo get from database
     }
 
-    public void signUp(){
-        System.out.println("Please enter username");
-        String name = DBMS.scanner.nextLine();
+    public void signUp(String name, String password){
+//        System.out.println("Please enter username");
+//        String name = DBMS.scanner.nextLine();
         if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + name + "'")!=0){
             System.out.println("User already exist");
         }
         else{
-            System.out.println("Please enter a password");
-            String password = DBMS.scanner.nextLine();
+//            System.out.println("Please enter a password");
+//            String password = DBMS.scanner.nextLine();
             //Account account = new Account("account", name, password);
             //DB.users.put(name,account);
 
             //DB.count = DB.count + 1;
             DBMS.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
         }
+        System.out.println("Success");
         //todo remove db usage
     }
     public void logout(){

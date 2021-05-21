@@ -10,17 +10,20 @@ import java.io.IOException;
 
 public class SignUpScreen {
     @FXML
-    private TextField userName;
+    private TextField fiUsername;
     @FXML
     private TextField email;
     @FXML
-    private PasswordField password;
+    private PasswordField fiPassword;
     @FXML
     private PasswordField confirmationPassword;
 
     @FXML
-    void createAccount(ActionEvent event) {
+    void createAccount(MouseEvent event) {
+        System.out.println(fiUsername.getText());
+        System.out.println(fiPassword.getText());
 
+        MainFX.db.getCurrentCustomer().login.signUp(fiUsername.getText(), fiPassword.getText());
 
     }
     @FXML

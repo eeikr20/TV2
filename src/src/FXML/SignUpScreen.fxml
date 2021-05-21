@@ -5,9 +5,9 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignUpScreen">
    <children>
-      <TextField fx:id="fiUsername" layoutX="226.0" layoutY="66.0" />
+      <TextField id="UsernameIdField" fx:id="fiUsername" layoutX="226.0" layoutY="66.0" />
       <TextField fx:id="fiEmail" layoutX="226.0" layoutY="119.0" />
-      <PasswordField fx:id="fiPassword" layoutX="226.0" layoutY="188.0" />
+      <PasswordField id="PasswordIdField" fx:id="fiPassword" layoutX="226.0" layoutY="188.0" />
       <PasswordField layoutX="226.0" layoutY="236.0" />
       <Button fx:id="btCreateAccount" layoutX="253.0" layoutY="292.0" mnemonicParsing="false" onMouseClicked="#createAccount" text="Create account" />
       <Button fx:id="btExit" layoutX="502.0" layoutY="317.0" mnemonicParsing="false" onMouseClicked="#exit" text="Exit" />

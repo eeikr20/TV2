@@ -22,12 +22,14 @@ public class LogInScreen {
     }
     @FXML
     void signUp(MouseEvent event) throws IOException {
+        //MainFX.db.getCurrentCustomer().login.signUp(fiUsername.getText(), fiPassword.getText());
 
         MainFX.setScene(getClass().getResource("SignUpScreen.fxml"), "Sign Up" );
 
     }
     @FXML
     void confirmLogIn(MouseEvent event) throws IOException {
+        MainFX.db.getCurrentCustomer().login.login(fiUsername.getText(), fiPassword.getText());
         /*
         if (String fiUsername !& fiPassword == )
         System.out.println("Wrong Username and/or Password");

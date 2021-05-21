@@ -6,7 +6,7 @@ public class Customer {
     int id;
     String type;
 
-    Login login = new Login();
+    public Login login = new Login();
     Search search = new Search();
     Verification verification = new Verification();
     Crediting crediting = new Crediting();
@@ -65,8 +65,8 @@ public class Customer {
     }
     private void visitorCommand(String input){
         switch (input){
-            case "login" -> login.login();
-            case "signup" -> login.signUp();
+//            case "login" -> login.login();
+//            case "signup" -> login.signUp();
             default -> userCommand(input);
         }
     }
