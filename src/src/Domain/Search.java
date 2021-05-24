@@ -35,14 +35,25 @@ public class Search {
         return DBMS.getPgSQL().searchSQL.getProgramCredits(id);
     }
 
-    public void viewCastCredits(){
-        System.out.println("What cast do you want to view?");
-        String cast = DBMS.scanner.nextLine();
+    public String[] getCastCredits(int id) {
+        return DBMS.getPgSQL().searchSQL.getCastCredits(id);
+    }
+
+    public void viewCastCredits(String cast){
+        //System.out.println("What cast do you want to view?");
+        //String cast = DBMS.scanner.nextLine();
         if(DBMS.pgSQL.sqlContains("select count(*) from casts where name = '" + cast + "'")==0){
             System.out.println("That cast does not exist");
             return;
         }
         int id = DBMS.pgSQL.getID("select id from casts where name = '" + cast +"'");
+
+        String[] data = DBMS.pgSQL.searchSQL.viewCastCredits(id);
+        for (String s : data){
+            System.out.println(s);
+        }
+        MainFX.db.currentCast.setCast(data[0], Integer.valueOf(data[1]), Integer.valueOf(data[2]), Boolean.valueOf(data[3]), Integer.valueOf(data[4]), Float.valueOf(data[5]));
+        DBMS.pgSQL.incCastView(cast);
 
         DBMS.pgSQL.viewCastCredits("select * from credit where castid = " + id);
 
@@ -63,5 +74,9 @@ public class Search {
 
     public String[] sortRatesCast() {
         return DBMS.pgSQL.searchSQL.sortRatesCast();
+    }
+
+    public String[] getComments(int id) {
+        return DBMS.pgSQL.searchSQL.getComments(id);
     }
 }

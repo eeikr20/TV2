@@ -13,6 +13,7 @@ import java.io.IOException;
 
 
 public class ConsumerView {
+    public Button btHistory;
     @FXML
     private Button btLogIn;
     @FXML
@@ -44,7 +45,7 @@ public class ConsumerView {
     @FXML
     private Button btGo;
 
-    final ToggleGroup group = new ToggleGroup();
+    private ToggleGroup group = new ToggleGroup();
 
     @FXML
     public void initialize(){
@@ -72,6 +73,7 @@ public class ConsumerView {
         btSignUp.setVisible(ifVisitor);
         btLogOut.setVisible(!ifVisitor);
         btFavorites.setVisible(!ifVisitor);
+        btHistory.setVisible(!ifVisitor);
         if(type.equals("administrator") || type.equals("producer")){
             btCreate.setVisible(true);
             btReadUpdates.setVisible(true);
@@ -121,6 +123,7 @@ public class ConsumerView {
     }
 
     public void favorites(MouseEvent mouseEvent) {
+        MainFX.setScene("/FXML/FavoriteView.fxml", "Favorites");
     }
 
     public void readUpdates(MouseEvent mouseEvent) {
@@ -149,16 +152,18 @@ public class ConsumerView {
         searcher(MainFX.db.search.viewPrograms(input), MainFX.db.search.viewCast(input));
     }
 
-    public void searcher(String[] program, String[] cast){
+    private void searcher(String[] program, String[] cast){
         RadioButton getBt = (RadioButton) group.getSelectedToggle();
         String btType = getBt.getText();
         if(btType.equals("Programs")){
+            DBMS.at = "program";
             for(String s : program){
                 if(s!=null)
                     idList.getItems().add(s);
             }
         }
         else if(btType.equals("Casts")){
+            DBMS.at = "cast";
             for(String s : cast){
                 if(s!=null)
                     idList.getItems().add(s);
@@ -168,14 +173,23 @@ public class ConsumerView {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
-                    String temp = idList.getSelectionModel().getSelectedItem().toString();
-                    System.out.println(temp);
-                    MainFX.db.search.viewProgramCredits(temp);
-
-                    MainFX.setScene("/FXML/CreditView.fxml", temp );
-
+                    String name = idList.getSelectionModel().getSelectedItem().toString();
+                    System.out.println(name);
+                    if(btType.equals("Programs")){
+                        DBMS.at = "program";
+                        MainFX.db.search.viewProgramCredits(name);
+                    }
+                    else if(btType.equals("Casts")){
+                        DBMS.at = "cast";
+                        MainFX.db.search.viewCastCredits(name);
+                    }
+                    MainFX.setScene("/FXML/CreditView.fxml", name );
                 }
             }
         });
+    }
+
+    public void history(MouseEvent mouseEvent) {
+        MainFX.setScene("/FXML/HistoryView.fxml", "History" );
     }
 }

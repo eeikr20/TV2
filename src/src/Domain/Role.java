@@ -10,7 +10,6 @@ public class Role {
         this.program = program;
         this.cast = cast;
         this.role = role;
-        //todo get the ids for the correct program and cast
     }
     */
     public Role(String program, String cast, String role) {

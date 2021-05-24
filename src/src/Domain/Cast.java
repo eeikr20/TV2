@@ -8,8 +8,11 @@ import java.util.List;
 public class Cast {
     //Attributes
     private HashMap<String, Role> role;
-    private int id;
     private String name;
+    private int id;
+    private int owner;
+    private boolean verified;
+    private Float avgRating;
     private int views;
     private int ratings;
     private List<String> comments;
@@ -26,6 +29,14 @@ public class Cast {
 
         DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + MainFX.db.currentCustomer.id + ", FALSE, 0, -1)");
     }
+    public void setCast(String name, int id, int owner, boolean verified, int views, Float avgRating){
+        this.name = name;
+        this.id = id;
+        this.owner = owner;
+        this.verified = verified;
+        this.views = views;
+        this.avgRating = avgRating;
+    }
     /*
     public void addRole(String name, Role role){
         this.role.put(name, role);
@@ -39,6 +50,18 @@ public class Cast {
 
     public HashMap<String, Role> getRole() {
         return role;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public float getAvgRating() {
+        return avgRating;
+    }
+
+    public int getId() {
+        return id;
     }
 }
 

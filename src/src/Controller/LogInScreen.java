@@ -16,20 +16,20 @@ public class LogInScreen {
     private PasswordField fiPassword;
 
     @FXML
-    void exit(MouseEvent event) {
+    private void exit(MouseEvent event) {
 
         MainFX.setScene("/FXML/ConsumerView.fxml", "Search for program" );
 
     }
     @FXML
-    void signUp(MouseEvent event) {
+    private void signUp(MouseEvent event) {
         //MainFX.db.getCurrentCustomer().login.signUp(fiUsername.getText(), fiPassword.getText());
 
         MainFX.setScene("/FXML/SignUpScreen.fxml", "Sign Up" );
 
     }
     @FXML
-    void confirmLogIn(MouseEvent event) {
+    private void confirmLogIn(MouseEvent event) {
         int login = MainFX.db.login.login(fiUsername.getText(), fiPassword.getText());
         switch (login){
             case -1 -> Controller.popup("Username is not in the database");

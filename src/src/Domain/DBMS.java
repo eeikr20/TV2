@@ -21,11 +21,13 @@ public class DBMS {
     public static Customer currentCustomer = new Customer("", "", -1, "visitor");
     public static Program currentProgram = new Program("");
     public static Cast currentCast = new Cast("");
+    public static String at = "";
     public Login login = new Login();
     public Search search = new Search();
     public Verification verification = new Verification();
     public Crediting crediting = new Crediting();
     public Notification notification = new Notification();
+    public Favorites favorites = new Favorites();
 
 
 //    public static Stage getStage() {
@@ -87,6 +89,9 @@ public class DBMS {
     public Customer getCurrentCustomer() {
         return currentCustomer;
     }
+    public void addToFavorites(int program){
+        pgSQL.addToFavorites(currentCustomer.id, program);
+    }
 
     /*
         public void setCurrentUser(User user){
@@ -109,13 +114,15 @@ public class DBMS {
         DBMS.pgSQL.query("INSERT INTO program VALUES ('Lord of the Rings', DEFAULT, -3, TRUE, 1000, 9)");
         DBMS.pgSQL.query("INSERT INTO program VALUES ('Forrest Gump', DEFAULT, -3, TRUE, 1, 8.6)");
         DBMS.pgSQL.query("INSERT INTO program VALUES ('The Wolf of Wall Street', DEFAULT, -3, TRUE, 1, 8.4)");
+        DBMS.pgSQL.query("INSERT INTO program VALUES ('Indiana Jones', DEFAULT, -3, TRUE, 15, 8.8)");
 
-        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Mark Hamill', DEFAULT, 1, TRUE, 9.8)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Mark Hamill', DEFAULT, 1, TRUE, 15, 9.8)");
         //new Role("Star Wars", "Mark Hamill", "Luke Skywalker");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(2,2,'Luke Skywalker', TRUE)");
-        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE, 9.7)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE, 16, 9.7)");
         //new Role("Star Wars", "Harrison Ford", "Han Solo");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(2,3,'Han Solo', TRUE)");
+        DBMS.pgSQL.query("INSERT INTO credit VALUES(7,3,'Indiana Jones', TRUE)");
 
         //DB.programs.put("Star Wars", p1);
         //DB.programs.put("Lord of the Rings", p2);

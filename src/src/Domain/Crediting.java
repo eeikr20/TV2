@@ -38,7 +38,7 @@ public class Crediting {
 
         //DBMS.postgresDB.query("INSERT INTO program casts ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", 0)");
 
-        //todo update to GUI
+
     }
     /*
     public HashMap<String, Cast> getTempCast() {

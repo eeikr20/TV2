@@ -76,4 +76,11 @@ public class Program {
     public String getName() {
         return name;
     }
+
+    public void addRating(int rate, int userid) {
+        DBMS.pgSQL.addRating(rate, userid, id);
+        Float newRating = DBMS.pgSQL.calculateRating(id);
+        DBMS.pgSQL.setRating(id, newRating);
+        this.avgRating = newRating;
+    }
 }

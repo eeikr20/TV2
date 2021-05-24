@@ -26,5 +26,6 @@
       <Button fx:id="btAll" layoutX="35.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchAll" text="All" />
       <Button fx:id="btMostViewes" layoutX="81.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchViews" text="Most Viewed" />
       <Button fx:id="btHighRate" layoutX="173.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchRates" text="Highest Rated" />
+      <Button fx:id="btHistory" layoutX="448.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#history" text="History" />
    </children>
 </AnchorPane>

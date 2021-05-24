@@ -209,4 +209,89 @@ public class SearchSQL {
         }
         return s;
     }
+    private String getProgramName(int id){
+        String s = "";
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select name from program where id = " + id);
+            while (rs.next()){
+                s = rs.getString(1);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    public String[] viewCastCredits(int id) {
+        String[] res = new String[6];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select * from casts where id = " + id);
+            while (rs.next()){
+                res[0] = rs.getString(1);
+                res[1] = rs.getString(2);
+                res[2] = rs.getString(3);
+                res[3] = String.valueOf(rs.getBoolean(4));
+                res[4] = rs.getString(5);
+                res[5] = rs.getString(6);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String[] getCastCredits(int id) {
+        String[] res = new String[dbSize("credit")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select program, role from credit where castid = " + id);
+            //ResultSet rs2 = PGSQL.statement.executeQuery("select role from credit where program = " + id);
+            int i = 0;
+            while (rs.next()){
+                res[i] = getProgramName(rs.getInt(1)) + " | " + rs.getString(2);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String[] getComments(int id) {
+        String[] res = new String[500];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select userid, msg from comments where programid = " + id);
+            //ResultSet rs2 = PGSQL.statement.executeQuery("select role from credit where program = " + id);
+            int i = 0;
+            while (rs.next()){
+                res[i] = getUserName(rs.getInt(1)) + " : " + rs.getString(2);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    private String getUserName(int id) {
+        String s = "";
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select name from users where id = " + id);
+            while (rs.next()){
+                s = rs.getString(1);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return s;
+    }
 }
