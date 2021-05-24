@@ -5,9 +5,7 @@ import Controller.MainFX;
 public class Crediting {
     Notification notification = new Notification();
 
-    public void addProgram(){
-        System.out.println("What is the name of your program?");
-        String name = DBMS.scanner.nextLine();
+    public void addProgram(String name){
         Program program = new Program(name);
 
         notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a program: " + name + " you must verify.", "admin");

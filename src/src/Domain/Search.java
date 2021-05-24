@@ -83,4 +83,12 @@ public class Search {
     public String[] viewMyCast(String input) {
         return DBMS.pgSQL.searchSQL.viewMyCast(input);
     }
+
+    public String[] viewAdminPrograms(String input) {
+        return DBMS.pgSQL.searchSQL.viewAdminPrograms(input);
+    }
+
+    public String[] viewMyPrograms(String input) {
+        return DBMS.pgSQL.searchSQL.viewMyPrograms(input);
+    }
 }
