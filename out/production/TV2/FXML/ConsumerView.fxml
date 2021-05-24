@@ -15,7 +15,7 @@
       <RadioButton fx:id="idCasts" layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="Casts" />
       <Button id="homeLogIn" fx:id="btCreate" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#create" prefHeight="26.0" prefWidth="57.0" text="Create" />
       <Button id="homeLogIn" fx:id="btExit" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="26.0" prefWidth="66.0" text="Exit" />
-      <Button fx:id="btLogout" layoutX="518.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
+      <Button fx:id="btLogOut" layoutX="518.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#logOut" text="Logout" />
       <Label fx:id="idUsername" layoutX="380.0" layoutY="23.0" text="Username" />
       <Button fx:id="btReadUpdates" layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#readUpdates" text="Read Updates" />
       <Label fx:id="idUpdateCount" layoutX="478.0" layoutY="176.0" text="Updates" />

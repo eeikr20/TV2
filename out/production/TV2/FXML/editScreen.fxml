@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditScreen">
+   <children>
+      <Label fx:id="idName" layoutX="61.0" layoutY="40.0" text="Name" />
+      <ListView fx:id="idCastNameList" layoutX="338.0" layoutY="152.0" prefHeight="200.0" prefWidth="200.0" />
+      <ScrollBar layoutX="538.0" layoutY="152.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="14.0" />
+      <TextField fx:id="fiCastName" layoutX="338.0" layoutY="36.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="409.0" layoutY="14.0" text="Cast Name" />
+      <ListView fx:id="idCurrentList" layoutX="61.0" layoutY="152.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="btAdd" layoutX="338.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#add" text="Add" />
+      <Button fx:id="btGo" layoutX="545.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#searchString" text="Go" />
+   </children>
+</AnchorPane>
