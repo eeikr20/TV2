@@ -10,6 +10,7 @@ public class PGSQL {
     public LoginSQL loginSQL = new LoginSQL();
     public SearchSQL searchSQL = new SearchSQL();
     public FavoritesSQL favoritesSQL = new FavoritesSQL();
+    public VerifySQL verifySQL = new VerifySQL();
 
 
     public PGSQL() {
@@ -103,6 +104,18 @@ public class PGSQL {
             e.printStackTrace();
         }
         return "";
+    }
+    public int getCastID(String name){
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select id from casts where name = " + name);
+            rs.next();
+            return rs.getInt(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
     public String getPassword(String query){
         try {

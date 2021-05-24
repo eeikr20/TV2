@@ -99,7 +99,13 @@ public class EditScreen {
         if(input.equals("")){
             return;
         }
-        String[] cast = MainFX.db.search.viewMyCast(input);
+        String[] cast = null;
+        if(MainFX.db.getCurrentCustomer().type.equals("administrator")){
+            cast = MainFX.db.search.viewAdminCast(input);
+        }
+        else {
+            cast = MainFX.db.search.viewMyCast(input);
+        }
         for(String s : cast){
             if(s!=null)
                 idCastList.getItems().add(s);
@@ -135,17 +141,21 @@ public class EditScreen {
 
     @FXML
     public void verifyProgram(MouseEvent event) {
-
+        MainFX.db.verification.verifyProgram(DBMS.pgSQL.searchSQL.getUserName(DBMS.currentProgram.getOwner()), DBMS.currentProgram.getName());
     }
 
     @FXML
     public void verifyCast(MouseEvent event) {
-
+        String credit = idCastList.getSelectionModel().getSelectedItem().toString();
+        MainFX.db.verification.verifyCast(DBMS.pgSQL.searchSQL.getUserName(DBMS.currentProgram.getOwner()), credit);
     }
 
     @FXML
     public void verifyCredit(MouseEvent event) {
-
+        String credit = idCreditList.getSelectionModel().getSelectedItem().toString();
+        String name = credit.substring(0, credit.indexOf(" |"));
+        String role = credit.substring(credit.indexOf(" | "), credit.length());
+        MainFX.db.verification.verifyCredit(DBMS.currentProgram.getId(), DBMS.pgSQL.getCastID(name), role);
     }
 
 
