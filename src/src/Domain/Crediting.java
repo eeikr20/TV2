@@ -1,5 +1,7 @@
 package Domain;
 
+import Controller.MainFX;
+
 public class Crediting {
     Notification notification = new Notification();
 
@@ -8,7 +10,7 @@ public class Crediting {
         String name = DBMS.scanner.nextLine();
         Program program = new Program(name);
 
-        notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a program: " + name + " you must verify.");
+        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a program: " + name + " you must verify.");
         //todo update to GUI
     }
     /*
@@ -32,7 +34,7 @@ public class Crediting {
         //tempCast.put(name, cast);
         //notification.updateAdmin("Domain.Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
 
-        notification.updateAdmin("Producer:" + DBMS.currentCustomer.name + " has added a cast: " + name + " you must verify.");
+        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a cast: " + name + " you must verify.");
 
         //DBMS.postgresDB.query("INSERT INTO program casts ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", 0)");
 
@@ -55,7 +57,7 @@ public class Crediting {
 
         //int id = DBMS.postgresDB.getID("select id from program where name = '" + program +"'");
 
-        if(DBMS.currentCustomer.id != DBMS.pgSQL.getID("select owner from program where name = '" + program +"'")){
+        if(MainFX.db.currentCustomer.id != DBMS.pgSQL.getID("select owner from program where name = '" + program +"'")){
             System.out.println("You do not have access to the program");
             return;
         }
@@ -78,11 +80,11 @@ public class Crediting {
             System.out.println("That cast does not exist");
             return;
         }
-        System.out.println(DBMS.currentCustomer.id);
+        System.out.println(MainFX.db.currentCustomer.id);
         System.out.println(DBMS.pgSQL.getID("select owner from casts where name = '" + cast +"'"));
         System.out.println(DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'"));
 
-        if(DBMS.currentCustomer.id != DBMS.pgSQL.getID("select owner from casts where name = '" + cast +"'") && !DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'")){
+        if(MainFX.db.currentCustomer.id != DBMS.pgSQL.getID("select owner from casts where name = '" + cast +"'") && !DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'")){
             System.out.println("You can not use this cast");
             return;
         }

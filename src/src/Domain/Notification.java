@@ -1,17 +1,23 @@
 package Domain;
 
+import Controller.MainFX;
+
 public class Notification {
 
+    public int newUpdateCount(int userID){
+        return DBMS.pgSQL.notificationSQL.newUpdateCount(userID);
+    }
+
     public void readUpdates(int userID) {
-        DBMS.pgSQL.readUpdates(userID);
+        DBMS.pgSQL.notificationSQL.readUpdates(userID);
     }
 
     public void eraseUpdates(int userID) {
-        DBMS.pgSQL.query("DELETE FROM updates WHERE userid = " + userID);
+        DBMS.pgSQL.notificationSQL.eraseUpdates(userID);
     }
 
     public void addUpdate(String update, int userID) {
-        DBMS.pgSQL.query("INSERT INTO updates VALUES ('" + update + "'," + userID + ", FALSE);");
+        DBMS.pgSQL.notificationSQL.addUpdate(update, userID);
     }
 
     public void updateAdmin(String msg) {
@@ -29,7 +35,7 @@ public class Notification {
         }
         int adminID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + name + "'");
 
-        DBMS.currentCustomer.notification.addUpdate(msg, adminID);
+        MainFX.db.notification.addUpdate(msg, adminID);
     }
 
 }

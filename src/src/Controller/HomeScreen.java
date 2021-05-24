@@ -8,30 +8,24 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class HomeScreen {
+    
     @FXML
-    void logIn(MouseEvent event) throws IOException {
-
-        MainFX.setScene(getClass().getResource("/FXML/LogInScreen.fxml"), "Log In" );
-
+    void logIn(MouseEvent event) {
+        MainFX.setScene("/FXML/LogInScreen.fxml", "Log In" );
     }
     @FXML
-    void exit() throws IOException {
-        MainFX.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
-
+    void exit() {
+        MainFX.setScene("/FXML/HomeScreen.fxml", "Home Screen");
     }
 
     @FXML
-    void goNext(MouseEvent event) throws IOException {
-
-        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Search for program" );
-
+    void goNext(MouseEvent event) {
+        MainFX.setScene("/FXML/ConsumerView.fxml", "Search for program" );
     }
 
     @FXML
-    void create(MouseEvent event) throws IOException {
-
-        MainFX.setScene(getClass().getResource("/FXML/CreateScreen.fxml"), "Create" );
-
+    void create(MouseEvent event) {
+        MainFX.setScene("/FXML/CreateScreen.fxml", "Create" );
     }
 
     @FXML
@@ -39,11 +33,7 @@ public class HomeScreen {
 
     }
     @FXML
-    void signUp(MouseEvent event) throws IOException{
-
-
-        MainFX.setScene(getClass().getResource("/FXML/SignUpScreen.fxml"), "Sign Up" );
-
-
+    void signUp(MouseEvent event) {
+        MainFX.setScene("/FXML/SignUpScreen.fxml", "Sign Up" );
     }
 }

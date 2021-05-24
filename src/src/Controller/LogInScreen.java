@@ -1,6 +1,7 @@
 package Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -15,30 +16,36 @@ public class LogInScreen {
     private PasswordField fiPassword;
 
     @FXML
-    void exit(MouseEvent event) throws IOException {
+    void exit(MouseEvent event) {
 
-        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Search for program" );
+        MainFX.setScene("/FXML/ConsumerView.fxml", "Search for program" );
 
     }
     @FXML
-    void signUp(MouseEvent event) throws IOException {
+    void signUp(MouseEvent event) {
         //MainFX.db.getCurrentCustomer().login.signUp(fiUsername.getText(), fiPassword.getText());
 
-        MainFX.setScene(getClass().getResource("SignUpScreen.fxml"), "Sign Up" );
+        MainFX.setScene("/FXML/SignUpScreen.fxml", "Sign Up" );
 
     }
     @FXML
-    void confirmLogIn(MouseEvent event) throws IOException {
-        MainFX.db.getCurrentCustomer().login.login(fiUsername.getText(), fiPassword.getText());
-        /*
-        if (String fiUsername !& fiPassword == )
-        System.out.println("Wrong Username and/or Password");
-        else
-         */
-            // Set current user to account the correct crudential is ergo. Admin or producer or account
-        // perhaps a popup screen to display succesfully on login
-        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Home Screen" );
-
+    void confirmLogIn(MouseEvent event) {
+        int login = MainFX.db.login.login(fiUsername.getText(), fiPassword.getText());
+        switch (login){
+            case -1 -> Controller.popup("Username is not in the database");
+            case -2 -> Controller.popup("Password does not match the username");
+            case 1 -> MainFX.setScene("/FXML/ConsumerView.fxml", "Home Screen" );
+        }
+        //ConsumerView.class.setBtLogIn();
     }
+
+//    void popup(String input){
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("Error message");
+//        alert.setHeaderText(null);
+//        alert.setContentText(input);
+//
+//        alert.showAndWait();
+//    }
 
 }
