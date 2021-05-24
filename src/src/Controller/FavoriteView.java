@@ -47,7 +47,7 @@ public class FavoriteView {
         MainFX.setScene("/FXML/CreditView.fxml", name );
     }
 
-    public void back(MouseEvent mouseEvent) {
+    public void exit(MouseEvent mouseEvent) {
         MainFX.setScene("/FXML/ConsumerView.fxml", "Home Screen" );
     }
 }

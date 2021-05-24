@@ -33,6 +33,7 @@ public class HistoryView {
                 idList.getItems().add(s);
         }
     }
+
     public void visit(MouseEvent mouseEvent) {
 
         String name = idList.getSelectionModel().getSelectedItem().toString();
@@ -42,7 +43,7 @@ public class HistoryView {
         MainFX.setScene("/FXML/CreditView.fxml", name );
     }
 
-    public void back(MouseEvent mouseEvent) {
+    public void exit(MouseEvent mouseEvent) {
         MainFX.setScene("/FXML/ConsumerView.fxml", "Home Screen" );
     }
 }
