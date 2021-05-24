@@ -314,4 +314,40 @@ public class SearchSQL {
         }
         return list;
     }
+
+    public String[] viewAdminPrograms(String input) {
+        String[] list = new String[dbSize("program")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE UPPER(name) LIKE UPPER('%" + input + "%')");
+            int i = 0;
+            while (rs.next()){
+                System.out.println(rs.getString(1));
+                list[i] = rs.getString(1);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String[] viewMyPrograms(String input) {
+        String[] list = new String[dbSize("program")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE (owner = " + MainFX.db.getCurrentCustomer().id + " OR verified = TRUE) AND UPPER(name) LIKE UPPER('%" + input + "%')");
+            int i = 0;
+            while (rs.next()){
+                System.out.println(rs.getString(1));
+                list[i] = rs.getString(1);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

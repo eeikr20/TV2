@@ -29,7 +29,12 @@ public class CreateScreen {
 
     @FXML
     public void createNewProgram(MouseEvent event){
-
+        String input = fiNewProgramName.getText();
+        if(input.equals("")){
+            return;
+        }
+        MainFX.db.crediting.addProgram(input);
+        fiNewProgramName.clear();
     }
 
     @FXML
@@ -43,7 +48,13 @@ public class CreateScreen {
         if(input.equals("")){
             return;
         }
-        String[] cast = MainFX.db.search.viewPrograms(input);
+        String[] cast = null;
+        if(DBMS.currentCustomer.type.equals("administrator")){
+            cast = MainFX.db.search.viewAdminPrograms(input);
+        }
+        else {
+            cast = MainFX.db.search.viewMyPrograms(input);
+        }
         for(String s : cast){
             if(s!=null)
                 idMyPrograms.getItems().add(s);
