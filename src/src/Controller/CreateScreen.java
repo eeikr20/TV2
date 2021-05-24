@@ -8,9 +8,7 @@ import java.io.IOException;
 public class CreateScreen {
 
     @FXML
-    void exit(MouseEvent event) throws IOException {
-
-        MainFX.setScene(getClass().getResource("/FXML/ConsumerView.fxml"), "Home Screen" );
-
+    void exit(MouseEvent event) {
+        MainFX.setScene("/FXML/ConsumerView.fxml", "Home Screen" );
     }
 }

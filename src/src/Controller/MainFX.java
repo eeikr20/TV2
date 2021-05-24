@@ -17,8 +17,14 @@ public class MainFX extends Application {
 
 
 
-    public static void setScene(URL url, String title) throws IOException {
-        Parent root = FXMLLoader.load(url);
+    public static void setScene(String filepath, String title) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(MainFX.class.getResource(filepath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Scene scene = new Scene(root, 600, 400);
 
         stage.setTitle(title);
@@ -26,16 +32,15 @@ public class MainFX extends Application {
         stage.show();
     }
 
-
     public static void main(String[] args) {
         launch();
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         this.stage = stage;
         //this.db = new DBMS();
-        this.setScene(getClass().getResource("/FXML/HomeScreen.fxml"), "Home Screen");
+        this.setScene("/FXML/HomeScreen.fxml", "Home Screen");
     }
 
 //    public Stage getStage() {

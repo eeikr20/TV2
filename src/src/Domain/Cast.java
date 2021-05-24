@@ -1,5 +1,7 @@
 package Domain;
 
+import Controller.MainFX;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class Cast {
         this.views =0;
         this.ratings = -1;
 
-        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE, 0)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + MainFX.db.currentCustomer.id + ", FALSE, 0, -1)");
     }
     /*
     public void addRole(String name, Role role){

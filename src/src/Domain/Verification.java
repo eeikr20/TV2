@@ -1,6 +1,8 @@
 package Domain;
 //import Database.PGSQL;
 
+import Controller.MainFX;
+
 public class Verification {
 
     private boolean checkAccess(String name){
@@ -39,7 +41,7 @@ public class Verification {
         }
 
         DBMS.pgSQL.query("UPDATE casts SET verified=TRUE WHERE name = '" + cast + "'");
-        DBMS.currentCustomer.notification.addUpdate("The cast: " + cast + " has been verified and added.", producerID);
+        MainFX.db.notification.addUpdate("The cast: " + cast + " has been verified and added.", producerID);
     }
 
     public void verifyProgram(){
@@ -72,7 +74,7 @@ public class Verification {
 
         if (answer.equals("yes")) {
             DBMS.pgSQL.query("UPDATE program SET verified=TRUE WHERE name = '" + programName + "'");
-            DBMS.currentCustomer.notification.addUpdate("The program: " + programName + " has been verified and added.", producerID);
+            MainFX.db.notification.addUpdate("The program: " + programName + " has been verified and added.", producerID);
         }
     }
 

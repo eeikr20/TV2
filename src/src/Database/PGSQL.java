@@ -1,9 +1,14 @@
 package Database;
 
+import Domain.DBMS;
+
 import java.sql.*;
 
 public class PGSQL {
-    Connection connection;
+    public static Connection connection;
+    public NotificationSQL notificationSQL = new NotificationSQL();
+    public LoginSQL loginSQL = new LoginSQL();
+    public SearchSQL searchSQL = new SearchSQL();
 
 
     public PGSQL() {
@@ -13,17 +18,20 @@ public class PGSQL {
         query("CREATE TABLE favorites(userid INTEGER, program INT);");
         query("CREATE TABLE history(userid INTEGER, program INTEGER);");
         query("CREATE TABLE program(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER, avgrating FLOAT);");
-        query("CREATE TABLE casts(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER);");
-        query("CREATE TABLE credit(program INTEGER, castid INTEGER, role TEXT);");
+        query("CREATE TABLE casts(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER, avgrating FLOAT);");
+        query("CREATE TABLE credit(program INTEGER, castid INTEGER, role TEXT, verified BOOLEAN);");
         query("CREATE TABLE comments(msg TEXT, userid INTEGER, program INTEGER);");
         query("CREATE TABLE ratings(score INTEGER, userid INTEGER, program INTEGER);");
     }
+    public void incProgramView(String name){
+        //UPDATE table_name SET age=22 WHERE id = 1;
+        query("UPDATE program SET views = " + (1 + DBMS.currentProgram.getViews()) + " WHERE name = '" + name + "'");
+    }
 
-    static Statement statement = null;
+    public static Statement statement = null;
 
     public Connection connect() {
         try{
-            DriverManager.registerDriver(new org.postgresql.Driver());
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/tv2","postgres","postgres");
         }
         catch (SQLException e){
@@ -32,7 +40,7 @@ public class PGSQL {
         return  connection;
     }
 
-    public void query(String query) {
+    public static void query(String query) {
         try {
             statement = connection.createStatement();
             statement.executeUpdate(query);
@@ -41,45 +49,7 @@ public class PGSQL {
             e.printStackTrace();
         }
     }
-    public void readUpdates(int userID){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT msg FROM updates WHERE userid = " + userID);
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-            //UPDATE table_name SET twitter_handle = '@taylorswift13' WHERE id = 2;
-            query("UPDATE updates SET read = TRUE WHERE userid = " + userID);
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-    public void viewPrograms(){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT name FROM program WHERE verified = TRUE");
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
-    public void viewCast(){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE");
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
     public int sqlContains(String query){
         try {
             statement = connection.createStatement();
@@ -103,25 +73,7 @@ public class PGSQL {
         query("DROP TABLE comments");
         query("DROP TABLE ratings");
     }
-    public String[] setUserData(String name){
-        String[] res = new String[4];
 
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM users WHERE name = '" + name + "'");
-            while (rs.next()){
-                res[0] = rs.getString(1);
-                res[1] = rs.getString(2);
-                res[2] = rs.getString(3);
-                res[3] = rs.getString(4);
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-
-        return res;
-    }
     public int getID(String query){
         try {
             statement = connection.createStatement();
@@ -176,20 +128,6 @@ public class PGSQL {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public void viewProgramCredits(String query){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-                System.out.print(getCastName(rs.getInt(2)) + ": ");
-                System.out.println(rs.getString(3 ));
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 
     private String getProgramName(int id) {

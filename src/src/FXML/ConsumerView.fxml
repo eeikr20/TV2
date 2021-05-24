@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ConsumerView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ConsumerView">
    <children>
-      <TextField id="searchBar" layoutX="35.0" layoutY="35.0" onMouseClicked="#searchBar" prefHeight="25.0" prefWidth="275.0" />
-      <ListView id="searchList" layoutX="35.0" layoutY="120.0" prefHeight="223.0" prefWidth="275.0" />
+      <TextField id="searchBar" fx:id="idSearchBar" layoutX="35.0" layoutY="35.0" prefHeight="25.0" prefWidth="275.0" />
+      <ListView id="searchList" fx:id="idList" layoutX="35.0" layoutY="120.0" prefHeight="223.0" prefWidth="275.0" />
       <ScrollBar layoutX="310.0" layoutY="120.0" orientation="VERTICAL" prefHeight="223.0" prefWidth="10.0" />
       <Button id="homeLogIn" fx:id="btLogIn" layoutX="512.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#logIn" prefHeight="26.0" prefWidth="66.0" text="Log In" />
       <Button id="homeSignIn" fx:id="btSignUp" layoutX="512.0" layoutY="61.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="8.0" prefWidth="66.0" text="Sign Up" />
       <Label layoutX="128.0" layoutY="14.0" text="Search here" />
-      <RadioButton layoutX="35.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
-      <RadioButton layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="RadioButton" />
+      <RadioButton fx:id="idPrograms" layoutX="35.0" layoutY="65.0" mnemonicParsing="false" selected="true" text="Programs" />
+      <RadioButton fx:id="idCasts" layoutX="161.0" layoutY="65.0" mnemonicParsing="false" text="Casts" />
       <Button id="homeLogIn" fx:id="btCreate" layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#create" prefHeight="26.0" prefWidth="57.0" text="Create" />
-      <Button id="homeLogIn" fx:id="btLogOut" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="26.0" prefWidth="66.0" text="Exit" />
+      <Button id="homeLogIn" fx:id="btExit" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="26.0" prefWidth="66.0" text="Exit" />
+      <Button fx:id="btLogout" layoutX="518.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#logout" text="Logout" />
+      <Label fx:id="idUsername" layoutX="380.0" layoutY="23.0" text="Username" />
+      <Button fx:id="btReadUpdates" layoutX="500.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#readUpdates" text="Read Updates" />
+      <Label fx:id="idUpdateCount" layoutX="478.0" layoutY="176.0" text="Updates" />
+      <Button fx:id="btCreateSuperUser" layoutX="479.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#createSuperUser" text="create super user" />
+      <Button fx:id="btFavorites" layoutX="513.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#favorites" text="Favorites" />
+      <Button fx:id="btVerification" layoutX="507.0" layoutY="298.0" mnemonicParsing="false" text="Verification" />
+      <Button fx:id="btGo" layoutX="317.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#searchString" text="Go" />
+      <Button fx:id="btAll" layoutX="35.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchAll" text="All" />
+      <Button fx:id="btMostViewes" layoutX="81.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchViews" text="Most Viewed" />
+      <Button fx:id="btHighRate" layoutX="173.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchRates" text="Highest Rated" />
    </children>
 </AnchorPane>
