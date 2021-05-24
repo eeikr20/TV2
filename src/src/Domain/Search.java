@@ -95,4 +95,8 @@ public class Search {
     public String[] getAllAdmins() {
         return DBMS.pgSQL.searchSQL.getAllAdmins();
     }
+
+    public String[] viewAdminCast(String input) {
+        return DBMS.pgSQL.searchSQL.viewAdminCast(input);
+    }
 }

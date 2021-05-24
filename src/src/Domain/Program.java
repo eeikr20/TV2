@@ -43,6 +43,10 @@ public class Program {
         return id;
     }
 
+    public int getOwner() {
+        return owner;
+    }
+
     public int getViews() {
         return views;
     }

@@ -197,7 +197,7 @@ public class SearchSQL {
         }
         return res;
     }
-    private String getCastName(int id){
+    public String getCastName(int id){
         String s = "";
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
@@ -282,7 +282,7 @@ public class SearchSQL {
         return res;
     }
 
-    private String getUserName(int id) {
+    public String getUserName(int id) {
         String s = "";
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
@@ -359,6 +359,24 @@ public class SearchSQL {
             int i = 0;
             while (rs.next()){
                 //System.out.println(rs.getString(1));
+                list[i] = rs.getString(1);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public String[] viewAdminCast(String input) {
+        String[] list = new String[dbSize("program")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE UPPER(name) LIKE UPPER('%" + input + "%')");
+            int i = 0;
+            while (rs.next()){
+                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }

@@ -17,50 +17,53 @@ public class Verification {
         }
         return true;
     }
-    public void verifyCast(){
-        System.out.println("Who is the producer that created the cast?");
-        String name = DBMS.scanner.nextLine();
+    public void verifyCredit(int programID, int castID, String role){
+        DBMS.pgSQL.verifySQL.verifyCredit(programID, castID, role);
+    }
+    public void verifyCast(String producerName, String castName){
+        //System.out.println("Who is the producer that created the cast?");
+        //String producerName = DBMS.scanner.nextLine();
 
-        if(!checkAccess(name)){
+        if(!checkAccess(producerName)){
             return;
         }
 
-        System.out.println("what is the name of the cast?");
-        String cast= DBMS.scanner.nextLine();
+        //System.out.println("what is the name of the cast?");
+        //String castName= DBMS.scanner.nextLine();
 
-        if(DBMS.pgSQL.getVerification("select verified from casts where name = '" + cast +"'")){
+        if(DBMS.pgSQL.getVerification("select verified from casts where name = '" + castName +"'")){
             System.out.println("That cast has already been verified");
             return;
         }
 
-        int producerID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + name + "'");
+        int producerID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + producerName + "'");
 
-        if(DBMS.pgSQL.getID("SELECT owner FROM casts where  name = '" + cast + "'") != producerID){
+        if(DBMS.pgSQL.getID("SELECT owner FROM casts where  name = '" + castName + "'") != producerID){
             System.out.println("That is not the correct producer");
             return;
         }
 
-        DBMS.pgSQL.query("UPDATE casts SET verified=TRUE WHERE name = '" + cast + "'");
-        MainFX.db.notification.addUpdate("The cast: " + cast + " has been verified and added.", producerID);
+        DBMS.pgSQL.query("UPDATE casts SET verified=TRUE WHERE name = '" + castName + "'");
+        MainFX.db.notification.addUpdate("The cast: " + castName + " has been verified and added.", producerID);
     }
 
-    public void verifyProgram(){
-        System.out.println("Who is the producer of this document?");
-        String name = DBMS.scanner.nextLine();
+    public void verifyProgram(String producerName, String programName){
+        //System.out.println("Who is the producer of this document?");
+        //String producerName = DBMS.scanner.nextLine();
 
-        if(!checkAccess(name)){
+        if(!checkAccess(producerName)){
             return;
         }
 
-        System.out.println("What is the name of the program?");
-        String programName = DBMS.scanner.nextLine();
+        //System.out.println("What is the name of the program?");
+        //String programName = DBMS.scanner.nextLine();
         //
         if(DBMS.pgSQL.getVerification("select verified from program where name = '" + programName +"'")){
             System.out.println("That program has already been verified");
             return;
         }
 
-        int producerID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + name + "'");
+        int producerID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + producerName + "'");
 
         if(DBMS.pgSQL.getID("SELECT owner FROM program where  name = '" + programName + "'") != producerID){
             System.out.println("That is not the correct producer");
@@ -69,13 +72,12 @@ public class Verification {
 
         //Print the roles of the program so that the admin can verify them
 
-        System.out.println("Are you sure the program is correct?");
-        String answer = DBMS.scanner.nextLine();
+        //System.out.println("Are you sure the program is correct?");
+        //String answer = DBMS.scanner.nextLine();
 
-        if (answer.equals("yes")) {
-            DBMS.pgSQL.query("UPDATE program SET verified=TRUE WHERE name = '" + programName + "'");
-            MainFX.db.notification.addUpdate("The program: " + programName + " has been verified and added.", producerID);
-        }
+        DBMS.pgSQL.query("UPDATE program SET verified=TRUE WHERE name = '" + programName + "'");
+        MainFX.db.notification.addUpdate("The program: " + programName + " has been verified and added.", producerID);
+
     }
 
 }
