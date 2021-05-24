@@ -34,6 +34,8 @@ public class EditScreen {
     private ListView idCastlist;
     @FXML
     private TextField fiCastName;
+    @FXML
+    private ComboBox idAdminName;
 
     @FXML
     public void initialize(){
@@ -58,6 +60,10 @@ public class EditScreen {
             if(s!=null)
                 idCreditList.getItems().add(s);
         }
+    }
+    @FXML
+    void exit(MouseEvent event) {
+        MainFX.setScene("/FXML/CreateScreen.fxml", "My Programs" );
     }
     @FXML
     public void addCredit(MouseEvent event) {
@@ -117,6 +123,7 @@ public class EditScreen {
     public void verifyCredit(MouseEvent event) {
 
     }
+
 
 
 }

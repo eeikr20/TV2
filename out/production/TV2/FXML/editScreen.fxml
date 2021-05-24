@@ -5,18 +5,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditScreen">
    <children>
-      <Label id="programName" fx:id="idName" layoutX="143.0" layoutY="14.0" text="Name" />
-      <ListView id="CastList" fx:id="idCastList" layoutX="338.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" />
-      <ScrollBar layoutX="538.0" layoutY="74.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="14.0" />
-      <TextField id="CastName" fx:id="fiCastName" layoutX="338.0" layoutY="36.0" prefHeight="25.0" prefWidth="200.0" />
-      <Label layoutX="409.0" layoutY="14.0" text="Cast Name" />
-      <ListView id="CreditList" fx:id="idCreditList" layoutX="61.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button id="addCredit" fx:id="btaddcredit" layoutX="287.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#addCredit" text="←" />
-      <Button id="go" fx:id="btGo" layoutX="545.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#searchString" text="Go" />
-      <TextField id="Role" fx:id="fiRole" layoutX="338.0" layoutY="305.0" prefHeight="25.0" prefWidth="200.0" />
-      <Button id="removeCredit" fx:id="btRemoveCast" layoutX="287.0" layoutY="99.0" mnemonicParsing="false" onMouseClicked="#removeCredit" text="→" />
-      <Label layoutX="426.0" layoutY="284.0" text="Role" />
-      <Pane layoutX="57.0" layoutY="306.0" prefHeight="107.0" prefWidth="210.0">
+      <Label id="programName" fx:id="idName" layoutX="55.0" layoutY="29.0" prefHeight="17.0" prefWidth="96.0" text="Name" />
+      <ListView id="CastList" fx:id="idCastList" layoutX="343.0" layoutY="66.0" prefHeight="200.0" prefWidth="200.0" />
+      <ScrollBar layoutX="543.0" layoutY="66.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="14.0" />
+      <TextField id="CastName" fx:id="fiCastName" layoutX="343.0" layoutY="28.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="409.0" layoutY="11.0" text="Cast Name" />
+      <ListView id="CreditList" fx:id="idCreditList" layoutX="44.0" layoutY="66.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button id="addCredit" fx:id="btaddcredit" layoutX="276.0" layoutY="104.0" mnemonicParsing="false" onMouseClicked="#addCredit" text="←" />
+      <Button id="go" fx:id="btGo" layoutX="550.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#searchString" text="Go" />
+      <TextField id="Role" fx:id="fiRole" layoutX="343.0" layoutY="288.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button id="removeCredit" fx:id="btRemoveCast" layoutX="276.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#removeCredit" text="→" />
+      <Button id="homeLogIn" fx:id="btExit" layoutX="517.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#exit" prefHeight="26.0" prefWidth="66.0" text="Exit" />
+      <Label layoutX="426.0" layoutY="266.0" text="Role" />
+      <Pane layoutX="50.0" layoutY="277.0" prefHeight="107.0" prefWidth="210.0">
          <children>
             <Label layoutX="71.0" layoutY="42.0" prefHeight="17.0" prefWidth="58.0" text="Cast Name" />
             <Label layoutX="19.0" layoutY="14.0" text="Create a new person to Credit " />
@@ -24,8 +25,9 @@
             <Button id="addNewCast" fx:id="btAddNewCast" layoutX="163.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#addNewCast" text="Add" />
          </children>
       </Pane>
-      <Button id="verifyCredit" fx:id="btVerifyCredit" layoutX="118.0" layoutY="280.0" mnemonicParsing="false" onMouseClicked="#verifyCredit" text="Verify Credit" />
-      <Button id="verifyProgram" fx:id="btVerifyProgram" layoutX="113.0" layoutY="40.0" mnemonicParsing="false" onMouseClicked="#verifyProgram" text="Verify Program" />
-      <Button id="verifyCast" fx:id="btVerifyCast" layoutX="402.0" layoutY="375.0" mnemonicParsing="false" onMouseClicked="#verifyCast" text="Verify Cast" />
+      <Button id="verifyCredit" fx:id="btVerifyCredit" layoutX="247.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#verifyCredit" text="Verify Credit" />
+      <Button id="verifyProgram" fx:id="btVerifyProgram" layoutX="242.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#verifyProgram" text="Verify Program" />
+      <Button id="verifyCast" fx:id="btVerifyCast" layoutX="251.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#verifyCast" text="Verify Cast" />
+      <ComboBox fx:id="idAdminName" layoutX="363.0" layoutY="326.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
