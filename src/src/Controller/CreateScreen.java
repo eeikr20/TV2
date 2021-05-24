@@ -4,6 +4,7 @@ import Domain.DBMS;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +24,8 @@ public class CreateScreen {
     private TextField fiNewProgramName;
     @FXML
     private Button idCreatenewProgram;
+    @FXML
+    private ComboBox idAdminName;
 
     @FXML
     public void createNewProgram(MouseEvent event){
@@ -51,7 +54,7 @@ public class CreateScreen {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idMyPrograms.getSelectionModel().getSelectedItem().toString();
                     DBMS.at = "program";
-                    MainFX.db.search.viewCastCredits(name);
+                    MainFX.db.search.viewProgramCredits(name);
                     MainFX.setScene("/FXML/EditScreen.fxml", name );
                 }
             }

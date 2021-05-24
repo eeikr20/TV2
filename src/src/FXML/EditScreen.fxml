@@ -28,6 +28,7 @@
       <Button id="verifyCredit" fx:id="btVerifyCredit" layoutX="247.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#verifyCredit" text="Verify Credit" />
       <Button id="verifyProgram" fx:id="btVerifyProgram" layoutX="242.0" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#verifyProgram" text="Verify Program" />
       <Button id="verifyCast" fx:id="btVerifyCast" layoutX="251.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#verifyCast" text="Verify Cast" />
-      <ComboBox fx:id="idAdminName" layoutX="363.0" layoutY="326.0" prefWidth="150.0" />
+      <ComboBox fx:id="idAdminName" layoutX="363.0" layoutY="335.0" prefWidth="150.0" />
+      <Label layoutX="403.0" layoutY="318.0" text="Chose Admin" />
    </children>
 </AnchorPane>
