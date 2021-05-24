@@ -24,6 +24,13 @@ public class Customer {
         this.id = id;
         this.type = type;
     }
+    public void addComment(String comment, int programId){
+        DBMS.pgSQL.addComment(comment, id, programId);
+    }
+
+    public String[] getHistory(int id) {
+        return DBMS.pgSQL.getHistory(id);
+    }
 //    public void runCommand(String input){
 //        switch (type){
 //            case "visitor" -> visitorCommand(input);

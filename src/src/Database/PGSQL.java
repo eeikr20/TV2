@@ -9,6 +9,7 @@ public class PGSQL {
     public NotificationSQL notificationSQL = new NotificationSQL();
     public LoginSQL loginSQL = new LoginSQL();
     public SearchSQL searchSQL = new SearchSQL();
+    public FavoritesSQL favoritesSQL = new FavoritesSQL();
 
 
     public PGSQL() {
@@ -20,12 +21,13 @@ public class PGSQL {
         query("CREATE TABLE program(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER, avgrating FLOAT);");
         query("CREATE TABLE casts(name TEXT, id SERIAL NOT NULL, owner INTEGER, verified BOOLEAN, views INTEGER, avgrating FLOAT);");
         query("CREATE TABLE credit(program INTEGER, castid INTEGER, role TEXT, verified BOOLEAN);");
-        query("CREATE TABLE comments(msg TEXT, userid INTEGER, program INTEGER);");
-        query("CREATE TABLE ratings(score INTEGER, userid INTEGER, program INTEGER);");
+        query("CREATE TABLE comments(msg TEXT, userid INTEGER, programid INTEGER);");
+        query("CREATE TABLE ratings(score INTEGER, userid INTEGER, programid INTEGER);");
     }
     public void incProgramView(String name){
         //UPDATE table_name SET age=22 WHERE id = 1;
         query("UPDATE program SET views = " + (1 + DBMS.currentProgram.getViews()) + " WHERE name = '" + name + "'");
+        query("INSERT INTO history VALUES(" + DBMS.currentCustomer.id + ", " + favoritesSQL.getProgramID(name) + ")");
     }
 
     public static Statement statement = null;
@@ -48,6 +50,9 @@ public class PGSQL {
         catch (SQLException e){
             e.printStackTrace();
         }
+    }
+    public void addToFavorites(int user, int program){
+        query("INSERT INTO favorites VALUES (" + user + ", " + program + ")");
     }
 
     public int sqlContains(String query){
@@ -172,4 +177,101 @@ public class PGSQL {
             e.printStackTrace();
         }
     }
+
+    public void incCastView(String name) {
+        query("UPDATE program SET views = " + (1 + DBMS.currentProgram.getViews()) + " WHERE name = '" + name + "'");
+    }
+
+    public String[] getHistory(int id) {
+        String[] list = new String[100];
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT program FROM history WHERE userid = " + id);
+            int i = 0;
+            while (rs.next()){
+                list[i] = getProgramName(rs.getInt(1));
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public void addComment(String comment, int userid, int programid) {
+        query("INSERT INTO comments VALUES('" + comment + "', " + userid + ", " + programid + ")");
+    }
+
+    private boolean alreadyRated(int userid, int programid){
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select count(*) from ratings where userid = " + userid + "AND programid = " + programid);
+            rs.next();
+            if(rs.getInt(1)==0){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void addRating(int rate, int userid, int programid) {
+
+        if(alreadyRated(userid, programid)){
+            query("UPDATE ratings SET score = " + rate + " WHERE userid = " + userid + "AND programid = " + programid);
+        }
+        else {
+            query("INSERT INTO ratings VALUES(" + rate + ", " + userid + ", " +  programid + ")");
+        }
+    }
+
+    public Float calculateRating(int id) {
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT AVG(score) FROM ratings WHERE programid = " + id);
+            rs.next();
+            return rs.getFloat(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1f;
+    }
+
+    public void setRating(int id, float newRating) {
+        query("UPDATE program SET avgrating = " + newRating + " WHERE id = " + id);
+    }
+    /*
+    public int ratingCount(int id){
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select count(*) from ratings where programid = " + id);
+            rs.next();
+            return rs.getInt(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    public int ratingSum(int id) {
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select SUM(ratings) where programid = " + id);
+            rs.next();
+            return rs.getInt(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    */
 }
