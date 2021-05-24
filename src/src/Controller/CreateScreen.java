@@ -51,7 +51,7 @@ public class CreateScreen {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idMyPrograms.getSelectionModel().getSelectedItem().toString();
                     DBMS.at = "program";
-                    MainFX.db.search.viewCastCredits(name);
+                    MainFX.db.search.viewProgramCredits(name);
                     MainFX.setScene("/FXML/EditScreen.fxml", name );
                 }
             }
