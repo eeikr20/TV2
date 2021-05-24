@@ -28,12 +28,22 @@ public class CreateScreen {
     private ComboBox idAdminName;
 
     @FXML
+    public void initialize(){
+        String[] allAdmins = MainFX.db.search.getAllAdmins();
+        for(String s : allAdmins){
+            if(s!=null)
+                idAdminName.getItems().add(s);
+        }
+    }
+
+    @FXML
     public void createNewProgram(MouseEvent event){
         String input = fiNewProgramName.getText();
+        String admin = idAdminName.getValue().toString();
         if(input.equals("")){
             return;
         }
-        MainFX.db.crediting.addProgram(input);
+        MainFX.db.crediting.addProgram(input, admin);
         fiNewProgramName.clear();
     }
 

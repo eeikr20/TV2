@@ -91,4 +91,8 @@ public class Search {
     public String[] viewMyPrograms(String input) {
         return DBMS.pgSQL.searchSQL.viewMyPrograms(input);
     }
+
+    public String[] getAllAdmins() {
+        return DBMS.pgSQL.searchSQL.getAllAdmins();
+    }
 }

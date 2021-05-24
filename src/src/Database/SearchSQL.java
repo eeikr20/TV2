@@ -350,4 +350,22 @@ public class SearchSQL {
         }
         return list;
     }
+
+    public String[] getAllAdmins() {
+        String[] list = new String[500];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM users WHERE type = 'administrator'");
+            int i = 0;
+            while (rs.next()){
+                //System.out.println(rs.getString(1));
+                list[i] = rs.getString(1);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

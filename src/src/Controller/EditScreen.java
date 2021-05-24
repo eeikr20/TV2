@@ -1,6 +1,7 @@
 package Controller;
 
 import Domain.DBMS;
+import Domain.Role;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
@@ -14,6 +15,8 @@ public class EditScreen {
     public ListView idCastList;
     @FXML
     public TextField fiNewCastName;
+    @FXML
+    public TextField fiRole;
     @FXML
     private Button btAdd;
     @FXML
@@ -39,6 +42,12 @@ public class EditScreen {
 
     @FXML
     public void initialize(){
+        String[] allAdmins = MainFX.db.search.getAllAdmins();
+        for(String s : allAdmins){
+            if(s!=null)
+                idAdminName.getItems().add(s);
+        }
+
         idName.setText(DBMS.currentProgram.getName());
 
         if(DBMS.currentCustomer.type.equals("administrator")){
@@ -67,7 +76,20 @@ public class EditScreen {
     }
     @FXML
     public void addCredit(MouseEvent event) {
-
+        if(idCastList.getSelectionModel().getSelectedItem()==null){
+            Controller.popup("You have to select something to visit");
+            return;
+        }
+        String role = fiRole.getText();
+        if(role.equals("")){
+            Controller.popup("Enter a role");
+            return;
+        }
+        String name = idCastList.getSelectionModel().getSelectedItem().toString();
+        new Role(DBMS.currentProgram.getName(), name, role);
+        fiRole.clear();
+        idCreditList.getItems().clear();
+        populateCredits();
     }
 
     @FXML
@@ -103,10 +125,12 @@ public class EditScreen {
     @FXML
     public void addNewCast(MouseEvent event) {
         String input = fiNewCastName.getText();
+        String admin = idAdminName.getValue().toString();
         if(input.equals("")){
             return;
         }
-        MainFX.db.crediting.createCast(input);
+        MainFX.db.crediting.createCast(input, admin);
+        fiNewCastName.clear();
     }
 
     @FXML
