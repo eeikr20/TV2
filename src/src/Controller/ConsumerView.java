@@ -123,6 +123,7 @@ public class ConsumerView {
     }
 
     public void readUpdates(MouseEvent mouseEvent) {
+        MainFX.setScene("/FXML/NotificationScreen.fxml", "Notifications");
     }
 
     public void searchAll(MouseEvent mouseEvent) {
