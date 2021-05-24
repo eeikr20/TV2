@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="424.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditScreen">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.EditScreen">
    <children>
       <Label id="programName" fx:id="idName" layoutX="143.0" layoutY="14.0" text="Name" />
       <ListView id="CastList" fx:id="idCastList" layoutX="338.0" layoutY="74.0" prefHeight="200.0" prefWidth="200.0" />

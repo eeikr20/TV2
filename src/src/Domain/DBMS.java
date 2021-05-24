@@ -120,6 +120,7 @@ public class DBMS {
         //new Role("Star Wars", "Mark Hamill", "Luke Skywalker");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(2,2,'Luke Skywalker', TRUE)");
         DBMS.pgSQL.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE, 16, 9.7)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('Harrison Ford', DEFAULT, 1, TRUE, 5, 2)");
         //new Role("Star Wars", "Harrison Ford", "Han Solo");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(2,3,'Han Solo', TRUE)");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(7,3,'Indiana Jones', TRUE)");

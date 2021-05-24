@@ -10,8 +10,8 @@ public class Crediting {
         String name = DBMS.scanner.nextLine();
         Program program = new Program(name);
 
-        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a program: " + name + " you must verify.");
-        //todo update to GUI
+        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a program: " + name + " you must verify.", "admin");
+        //todo get admin
     }
     /*
     public HashMap<String, Program> getTempOwner() {
@@ -27,14 +27,14 @@ public class Crediting {
         tempOwner.remove(name);
     }
     */
-    public void createCast(){
-        System.out.println("What is the name of the cast?");
-        String name = DBMS.scanner.nextLine();
+    public void createCast(String name){
+        //System.out.println("What is the name of the cast?");
+        //String name = DBMS.scanner.nextLine();
         Cast cast = new Cast (name);
         //tempCast.put(name, cast);
         //notification.updateAdmin("Domain.Producer:" + super.getName() + " has added a cast: " + name + " you must verify.");
 
-        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a cast: " + name + " you must verify.");
+        notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a cast: " + name + " you must verify.", "admin");
 
         //DBMS.postgresDB.query("INSERT INTO program casts ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", 0)");
 

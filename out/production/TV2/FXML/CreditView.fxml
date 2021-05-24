@@ -10,8 +10,14 @@
       <Label fx:id="idRating" layoutX="322.0" layoutY="40.0" text="Rating" />
       <Label fx:id="idViews" layoutX="324.0" layoutY="68.0" text="Views" />
       <Label layoutX="61.0" layoutY="102.0" text="Credits" />
-      <Label layoutX="324.0" layoutY="102.0" text="Comments" />
-      <ListView layoutX="324.0" layoutY="119.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="idCommentTag" layoutX="324.0" layoutY="102.0" text="Comments" />
+      <ListView fx:id="idCommentList" layoutX="324.0" layoutY="119.0" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="btBack" layoutX="61.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#back" text="Back" />
+      <Label fx:id="idUsername" layoutX="199.0" layoutY="14.0" text="Username" />
+      <Button fx:id="btAddFavorite" layoutX="121.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#addFavorite" text="Add to favorites" />
+      <TextField fx:id="idCommentText" layoutX="324.0" layoutY="345.0" />
+      <Button fx:id="btComment" layoutX="486.0" layoutY="345.0" mnemonicParsing="false" onMouseClicked="#addComment" text="Add comment" />
+      <Button fx:id="btRate" layoutX="547.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#addRating" text="Rate" />
+      <ComboBox fx:id="idRateBox" layoutX="478.0" layoutY="36.0" prefHeight="25.0" prefWidth="58.0" promptText="10" />
    </children>
 </AnchorPane>

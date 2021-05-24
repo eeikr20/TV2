@@ -21,11 +21,10 @@
       <Label fx:id="idUpdateCount" layoutX="478.0" layoutY="176.0" text="Updates" />
       <Button fx:id="btCreateSuperUser" layoutX="479.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#createSuperUser" text="create super user" />
       <Button fx:id="btFavorites" layoutX="513.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#favorites" text="Favorites" />
-      <Button fx:id="btVerification" layoutX="507.0" layoutY="298.0" mnemonicParsing="false" text="Verification" />
       <Button fx:id="btGo" layoutX="317.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#searchString" text="Go" />
       <Button fx:id="btAll" layoutX="35.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchAll" text="All" />
       <Button fx:id="btMostViewes" layoutX="81.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchViews" text="Most Viewed" />
       <Button fx:id="btHighRate" layoutX="173.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#searchRates" text="Highest Rated" />
-      <Button fx:id="btHistory" layoutX="448.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#history" text="History" />
+      <Button fx:id="btHistory" layoutX="518.0" layoutY="284.0" mnemonicParsing="false" onMouseClicked="#history" text="History" />
    </children>
 </AnchorPane>

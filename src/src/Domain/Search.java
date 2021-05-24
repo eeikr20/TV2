@@ -79,4 +79,8 @@ public class Search {
     public String[] getComments(int id) {
         return DBMS.pgSQL.searchSQL.getComments(id);
     }
+
+    public String[] viewMyCast(String input) {
+        return DBMS.pgSQL.searchSQL.viewMyCast(input);
+    }
 }

@@ -29,8 +29,6 @@ public class ConsumerView {
     @FXML
     private Button btCreateSuperUser;
     @FXML
-    private Button btVerification;
-    @FXML
     private Label idUsername;
     @FXML
     private Label idUpdateCount;
@@ -84,11 +82,9 @@ public class ConsumerView {
         }
         if(type.equals("administrator")){
             btCreateSuperUser.setVisible(true);
-            btVerification.setVisible(true);
         }
         else {
             btCreateSuperUser.setVisible(false);
-            btVerification.setVisible(false);
         }
     }
 
@@ -105,7 +101,7 @@ public class ConsumerView {
     }
     @FXML
     void create(MouseEvent event) {
-        MainFX.setScene("/FXML/CreateScreen.fxml", "Create" );
+        MainFX.setScene("/FXML/CreateScreen.fxml", "Program chooser" );
     }
 
     @FXML
