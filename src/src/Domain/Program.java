@@ -30,7 +30,7 @@ public class Program {
 
         DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE, 0, -1)");
     }
-    public void setProgram(String name, int id, int owner, boolean verified, int views, Float avgRating){
+    public void setProgram(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;
         this.id = id;
         this.owner = owner;

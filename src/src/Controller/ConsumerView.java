@@ -2,14 +2,10 @@ package Controller;
 
 
 import Domain.DBMS;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-
-import java.io.IOException;
 
 
 public class ConsumerView {
@@ -133,7 +129,7 @@ public class ConsumerView {
 
     public void searchViews(MouseEvent mouseEvent) {
         idList.getItems().clear();
-        searcher(MainFX.db.search.sortViewesPrograms(), MainFX.db.search.sortViewesCast());
+        searcher(MainFX.db.search.sortViewsPrograms(), MainFX.db.search.sortViewsCast());
     }
 
     public void searchRates(MouseEvent mouseEvent) {

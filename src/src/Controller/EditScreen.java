@@ -155,7 +155,7 @@ public class EditScreen {
         String credit = idCreditList.getSelectionModel().getSelectedItem().toString();
         String name = credit.substring(0, credit.indexOf(" |"));
         String role = credit.substring(credit.indexOf(" | "), credit.length());
-        MainFX.db.verification.verifyCredit(DBMS.currentProgram.getId(), DBMS.pgSQL.getCastID(name), role);
+        MainFX.db.verification.verifyCredit(DBMS.currentProgram.getId(), DBMS.pgSQL.searchSQL.getCastID(name), role);
     }
 
 

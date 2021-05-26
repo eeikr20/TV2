@@ -93,30 +93,7 @@ public class PGSQL {
         return -1;
     }
 
-    private String getCastName(int id){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select name from casts where id = " + id);
-            rs.next();
-            return rs.getString(1);
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return "";
-    }
-    public int getCastID(String name){
-        try {
-            statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select id from casts where name = " + name);
-            rs.next();
-            return rs.getInt(1);
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
+
     public String getPassword(String query){
         try {
             statement = connection.createStatement();
@@ -148,7 +125,7 @@ public class PGSQL {
         return false;
     }
 
-    private String getProgramName(int id) {
+    public String getProgramName(int id) {
         try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select name from program where id = " + id);
@@ -244,7 +221,7 @@ public class PGSQL {
         }
     }
 
-    public Float calculateRating(int id) {
+    public float calculateRating(int id) {
         try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("SELECT AVG(score) FROM ratings WHERE programid = " + id);
@@ -254,7 +231,7 @@ public class PGSQL {
         catch (SQLException e){
             e.printStackTrace();
         }
-        return -1f;
+        return -1;
     }
 
     public void setRating(int id, float newRating) {
