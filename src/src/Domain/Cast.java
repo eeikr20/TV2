@@ -12,7 +12,7 @@ public class Cast {
     private int id;
     private int owner;
     private boolean verified;
-    private Float avgRating;
+    private float avgRating;
     private int views;
     private int ratings;
     private List<String> comments;
@@ -29,7 +29,7 @@ public class Cast {
 
         DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + MainFX.db.currentCustomer.id + ", FALSE, 0, -1)");
     }
-    public void setCast(String name, int id, int owner, boolean verified, int views, Float avgRating){
+    public void setCast(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;
         this.id = id;
         this.owner = owner;

@@ -60,12 +60,12 @@ public class Search {
         //todo GUI
     }
 
-    public String[] sortViewesPrograms() {
-        return DBMS.pgSQL.searchSQL.sortViewesPrograms();
+    public String[] sortViewsPrograms() {
+        return DBMS.pgSQL.searchSQL.sortViewsPrograms();
     }
 
-    public String[] sortViewesCast() {
-        return DBMS.pgSQL.searchSQL.sortViewesCast();
+    public String[] sortViewsCast() {
+        return DBMS.pgSQL.searchSQL.sortViewsCast();
     }
 
     public String[] sortRatesPrograms() {

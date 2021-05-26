@@ -141,7 +141,7 @@ public class CreditView {
     }
 
     @FXML
-    private void back(MouseEvent mouseEvent) {
+    public void back(MouseEvent mouseEvent) {
         MainFX.setScene("/FXML/ConsumerView.fxml", "Search for program" );
     }
 

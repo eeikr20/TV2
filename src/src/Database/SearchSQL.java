@@ -88,7 +88,7 @@ public class SearchSQL {
         return list;
     }
 
-    public String[] sortViewesPrograms() {
+    public String[] sortViewsPrograms() {
         //System.out.println(dbSize("program"));
         String[] list = new String[dbSize("program")];
         try {
@@ -107,7 +107,7 @@ public class SearchSQL {
         return list;
     }
 
-    public String[] sortViewesCast() {
+    public String[] sortViewsCast() {
         //System.out.println(dbSize("program"));
         String[] list = new String[dbSize("program")];
         try {
@@ -210,6 +210,18 @@ public class SearchSQL {
             e.printStackTrace();
         }
         return s;
+    }
+    public int getCastID(String name){
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select id from casts where name = " + name);
+            rs.next();
+            return rs.getInt(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
     }
     private String getProgramName(int id){
         String s = "";

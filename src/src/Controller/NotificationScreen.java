@@ -24,12 +24,12 @@ public class NotificationScreen {
     }
 
     @FXML
-    void exit(MouseEvent event) {
+    public void exit(MouseEvent event) {
         MainFX.setScene("/FXML/ConsumerView.fxml", "Home Screen" );
     }
 
     @FXML
-    public void remove(MouseEvent mouseEvent) {
+    public void remove(MouseEvent event) {
         DBMS.pgSQL.notificationSQL.eraseUpdates(DBMS.currentCustomer.id);
         idList.getItems().clear();
     }
