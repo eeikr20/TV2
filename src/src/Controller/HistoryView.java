@@ -1,6 +1,5 @@
 package Controller;
 
-import Domain.DBMS;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -19,7 +18,7 @@ public class HistoryView {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idList.getSelectionModel().getSelectedItem().toString();
-                    DBMS.at = "program";
+                    MainFX.db.at = "program";
                     MainFX.db.search.viewProgramCredits(name);
                     MainFX.setScene("/FXML/CreditView.fxml", name );
                 }
@@ -27,7 +26,7 @@ public class HistoryView {
         });
     }
     private void populate(){
-        String[] list = DBMS.currentCustomer.getHistory(DBMS.currentCustomer.id);
+        String[] list = MainFX.db.currentCustomer.getHistory(MainFX.db.currentCustomer.id);
         for(String s : list){
             if(s!=null)
                 idList.getItems().add(s);
@@ -37,8 +36,7 @@ public class HistoryView {
     public void visit(MouseEvent mouseEvent) {
 
         String name = idList.getSelectionModel().getSelectedItem().toString();
-        System.out.println(name);
-        DBMS.at = "program";
+        MainFX.db.at = "program";
         MainFX.db.search.viewProgramCredits(name);
         MainFX.setScene("/FXML/CreditView.fxml", name );
     }

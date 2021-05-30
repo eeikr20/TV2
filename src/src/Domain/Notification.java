@@ -12,6 +12,10 @@ public class Notification {
         DBMS.pgSQL.notificationSQL.readUpdates(userID);
     }
 
+    public String[] getNotifications(int id){
+        return DBMS.pgSQL.notificationSQL.getNotifications(id);
+    }
+
     public void eraseUpdates(int userID) {
         DBMS.pgSQL.notificationSQL.eraseUpdates(userID);
     }
@@ -21,7 +25,7 @@ public class Notification {
     }
 
     public void updateAdmin(String msg, String adminName) {
-
+        /*
         if(DBMS.pgSQL.sqlContains("select count(*) from users where name = '" + adminName + "'")==0){
             System.out.println("That user does nor exist");
             return;
@@ -31,6 +35,7 @@ public class Notification {
             System.out.println("That user is not a administrator");
             return;
         }
+        */
         int adminID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + adminName + "'");
 
         MainFX.db.notification.addUpdate(msg, adminID);

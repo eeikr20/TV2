@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class MainFX extends Application {
 
@@ -39,7 +38,6 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        //this.db = new DBMS();
         this.setScene("/FXML/HomeScreen.fxml", "Home Screen");
     }
 

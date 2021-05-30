@@ -48,9 +48,9 @@ public class EditScreen {
                 idAdminName.getItems().add(s);
         }
 
-        idName.setText(DBMS.currentProgram.getName());
+        idName.setText(MainFX.db.currentProgram.getName());
 
-        if(DBMS.currentCustomer.type.equals("administrator")){
+        if(MainFX.db.currentCustomer.type.equals("administrator")){
             btVerifyProgram.setVisible(true);
             btVerifyCast.setVisible(true);
             btVerifyCredit.setVisible(true);
@@ -64,7 +64,8 @@ public class EditScreen {
     }
     private void populateCredits(){
         String[] credits = null;
-        credits = MainFX.db.search.getProgramCredits(DBMS.currentProgram.getId());
+        //credits = MainFX.db.search.getProgramCredits(MainFX.db.currentProgram.getId());
+        credits = MainFX.db.search.getAllProgramCredits(MainFX.db.currentProgram.getId());
         for(String s : credits){
             if(s!=null)
                 idCreditList.getItems().add(s);
@@ -86,7 +87,8 @@ public class EditScreen {
             return;
         }
         String name = idCastList.getSelectionModel().getSelectedItem().toString();
-        new Role(DBMS.currentProgram.getName(), name, role);
+        int id = Integer.parseInt(name.substring(name.indexOf(" | ")+3, name.length()));
+        new Role(MainFX.db.currentProgram.getId(), id, role);
         fiRole.clear();
         idCreditList.getItems().clear();
         populateCredits();
@@ -115,8 +117,11 @@ public class EditScreen {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idCastList.getSelectionModel().getSelectedItem().toString();
-                    DBMS.at = "cast";
-                    MainFX.db.search.viewCastCredits(name);
+                    String id = idCastList.getSelectionModel().getSelectedItem().toString().substring(name.indexOf(" | ")+3, name.length());
+                    int i = Integer.parseInt(id);
+                    MainFX.db.at = "cast";
+                    MainFX.db.search.viewCastCredits(i);
+
                     MainFX.setScene("/FXML/CreditView.fxml", name );
                 }
             }
@@ -125,7 +130,21 @@ public class EditScreen {
 
     @FXML
     public void removeCredit(MouseEvent event) {
+        //idCreditList;
 
+        if(idCreditList.getSelectionModel().getSelectedItem()==null){
+            Controller.popup("You have to select something to visit");
+            return;
+        }
+
+        String name = idCreditList.getSelectionModel().getSelectedItem().toString();
+        int id = Integer.parseInt(name.substring(name.indexOf("#")+1, name.indexOf(" | ")));
+        MainFX.db.crediting.removeCredit(MainFX.db.currentProgram.getId(), id);
+
+        //new Role(MainFX.db.currentProgram.getId(), id, role);
+        fiRole.clear();
+        idCreditList.getItems().clear();
+        populateCredits();
     }
 
     @FXML
@@ -141,23 +160,21 @@ public class EditScreen {
 
     @FXML
     public void verifyProgram(MouseEvent event) {
-        MainFX.db.verification.verifyProgram(DBMS.pgSQL.searchSQL.getUserName(DBMS.currentProgram.getOwner()), DBMS.currentProgram.getName());
+        MainFX.db.verification.verifyProgram(DBMS.pgSQL.searchSQL.getUserName(MainFX.db.currentProgram.getOwner()), MainFX.db.currentProgram.getName());
     }
 
     @FXML
     public void verifyCast(MouseEvent event) {
         String credit = idCastList.getSelectionModel().getSelectedItem().toString();
-        MainFX.db.verification.verifyCast(DBMS.pgSQL.searchSQL.getUserName(DBMS.currentProgram.getOwner()), credit);
+        int id = Integer.parseInt(credit.substring(credit.indexOf(" | ")+3));
+        MainFX.db.verification.verifyCast(DBMS.pgSQL.searchSQL.getUserName(MainFX.db.currentProgram.getOwner()), id);
     }
 
     @FXML
     public void verifyCredit(MouseEvent event) {
         String credit = idCreditList.getSelectionModel().getSelectedItem().toString();
-        String name = credit.substring(0, credit.indexOf(" |"));
-        String role = credit.substring(credit.indexOf(" | "), credit.length());
-        MainFX.db.verification.verifyCredit(DBMS.currentProgram.getId(), DBMS.pgSQL.searchSQL.getCastID(name), role);
+        String name = credit.substring(0, credit.indexOf(" #"));
+        String role = credit.substring(credit.indexOf(" | ")+3);
+        MainFX.db.verification.verifyCredit(MainFX.db.currentProgram.getId(), DBMS.pgSQL.searchSQL.getCastID(name), role);
     }
-
-
-
 }

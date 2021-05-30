@@ -18,30 +18,32 @@ public class Search {
     }
 
     public void viewProgramCredits(String program){
-        //System.out.println("What program do you want to view?");
-        //String program = DBMS.scanner.nextLine();
         if(DBMS.pgSQL.sqlContains("select count(*) from program where name = '" + program + "'")==0){
             System.out.println("That program does not exist");
             return;
         }
         int id = DBMS.pgSQL.getID("select id from program where name = '" + program +"'");
 
-
         String[] data = DBMS.pgSQL.searchSQL.viewProgramCredits(id);
-        MainFX.db.currentProgram.setProgram(data[0], Integer.valueOf(data[1]), Integer.valueOf(data[2]), Boolean.valueOf(data[3]), Integer.valueOf(data[4]), Float.valueOf(data[5]));
+        MainFX.db.currentProgram.setProgram(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Boolean.parseBoolean(data[3]), Integer.parseInt(data[4]), Float.parseFloat(data[5]));
         DBMS.pgSQL.incProgramView(program);
     }
     public String[] getProgramCredits(int id){
         return DBMS.getPgSQL().searchSQL.getProgramCredits(id);
     }
+    public String[] getAllProgramCredits(int id){
+        return DBMS.getPgSQL().searchSQL.getAllProgramCredits(id);
+    }
 
     public String[] getCastCredits(int id) {
         return DBMS.getPgSQL().searchSQL.getCastCredits(id);
     }
+    /*
+    public String[] getAllCastCredits(int id) {
+        return DBMS.getPgSQL().searchSQL.getAllCastCredits(id);
+    }
 
     public void viewCastCredits(String cast){
-        //System.out.println("What cast do you want to view?");
-        //String cast = DBMS.scanner.nextLine();
         if(DBMS.pgSQL.sqlContains("select count(*) from casts where name = '" + cast + "'")==0){
             System.out.println("That cast does not exist");
             return;
@@ -52,12 +54,26 @@ public class Search {
         for (String s : data){
             System.out.println(s);
         }
-        MainFX.db.currentCast.setCast(data[0], Integer.valueOf(data[1]), Integer.valueOf(data[2]), Boolean.valueOf(data[3]), Integer.valueOf(data[4]), Float.valueOf(data[5]));
-        DBMS.pgSQL.incCastView(cast);
+        MainFX.db.currentCast.setCast(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Boolean.parseBoolean(data[3]), Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+        DBMS.pgSQL.incCastView(id);
 
         DBMS.pgSQL.viewCastCredits("select * from credit where castid = " + id);
+    }
+    */
+    public void viewCastCredits(int id){
+        if(DBMS.pgSQL.sqlContains("select count(*) from casts where id = " + id)==0){
+            System.out.println("That cast does not exist");
+            return;
+        }
 
-        //todo GUI
+        String[] data = DBMS.pgSQL.searchSQL.viewCastCredits(id);
+        for (String s : data){
+            System.out.println(s);
+        }
+        MainFX.db.currentCast.setCast(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Boolean.parseBoolean(data[3]), Integer.parseInt(data[4]), Float.parseFloat(data[5]));
+        DBMS.pgSQL.incCastView(id);
+
+        DBMS.pgSQL.viewCastCredits("select * from credit where castid = " + id);
     }
 
     public String[] sortViewsPrograms() {

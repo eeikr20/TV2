@@ -28,7 +28,7 @@ public class Program {
         //this.id = DB.count;
         //DB.count = DB.count + 1;
 
-        DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + DBMS.currentCustomer.id + ", FALSE, 0, -1)");
+        DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + 1 + ", FALSE, 0, 0)");
     }
     public void setProgram(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;

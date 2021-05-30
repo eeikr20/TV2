@@ -1,6 +1,5 @@
 package Controller;
 
-import Domain.DBMS;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -33,21 +32,27 @@ public class CreditView {
 
     @FXML
     public void initialize(){
-        idUsername.setText(DBMS.currentCustomer.name);
+        idUsername.setText(MainFX.db.currentCustomer.name);
         idRateBox.getItems().addAll("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
-        if(DBMS.at.equals("program")){
-            idName.setText(DBMS.currentProgram.getName());
-            idViews.setText("Views: " + DBMS.currentProgram.getViews());
-            idRating.setText("Rating: " + DBMS.currentProgram.getAvgRating());
+        if(MainFX.db.at.equals("program")){
+            idName.setText(MainFX.db.currentProgram.getName());
+            idViews.setText("Views: " + MainFX.db.currentProgram.getViews());
+            float rating = MainFX.db.currentProgram.getAvgRating();
+            if(rating == 0f){
+                idRating.setText("Rating: none");
+            }
+            else {
+                idRating.setText("Rating: " + MainFX.db.currentProgram.getAvgRating());
+            }
             idCommentTag.setVisible(true);
             idCommentList.setVisible(true);
             idRating.setVisible(true);
             populateComments();
         }
-        else if(DBMS.at.equals("cast")){
-            idName.setText(DBMS.currentCast.getName());
-            idViews.setText("Views: " + DBMS.currentCast.getViews());
-            idRating.setText("Rating: " + DBMS.currentCast.getAvgRating());
+        else if(MainFX.db.at.equals("cast")){
+            idName.setText(MainFX.db.currentCast.getName());
+            idViews.setText("Views: " + MainFX.db.currentCast.getViews());
+            idRating.setText("Rating: " + MainFX.db.currentCast.getAvgRating());
             idCommentTag.setVisible(false);
             idCommentList.setVisible(false);
             idCommentText.setVisible(false);
@@ -58,7 +63,7 @@ public class CreditView {
         }
         setVisibility();
 
-        if(DBMS.at.equals("program") && !DBMS.currentCustomer.type.equals("visitor")){
+        if(MainFX.db.at.equals("program") && !MainFX.db.currentCustomer.type.equals("visitor")){
             btAddFavorite.setVisible(true);
             btRate.setVisible(true);
             idRateBox.setVisible(true);
@@ -78,14 +83,14 @@ public class CreditView {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idCreditList.getSelectionModel().getSelectedItem().toString();
-                    name = name.substring(0, name.indexOf(" |"));
-                    System.out.println(name);
-                    if(DBMS.at.equals("program")){
-                        DBMS.at = "cast";
-                        MainFX.db.search.viewCastCredits(name);
+                    if(MainFX.db.at.equals("program")){
+                        int id = Integer.valueOf(name.substring(name.indexOf("#")+1, name.indexOf(" | ")));
+                        MainFX.db.at = "cast";
+                        MainFX.db.search.viewCastCredits(id);
                     }
-                    else if(DBMS.at.equals("cast")){
-                        DBMS.at = "program";
+                    else if(MainFX.db.at.equals("cast")){
+                        name = name.substring(0, name.indexOf(" | "));
+                        MainFX.db.at = "program";
                         MainFX.db.search.viewProgramCredits(name);
                     }
                     MainFX.setScene("/FXML/CreditView.fxml", name );
@@ -94,7 +99,7 @@ public class CreditView {
         });
     }
     private void setVisibility(){
-        if(DBMS.currentCustomer.type.equals("visitor")){
+        if(MainFX.db.currentCustomer.type.equals("visitor")){
             btAddFavorite.setVisible(false);
             btComment.setVisible(false);
             btRate.setVisible(false);
@@ -112,11 +117,12 @@ public class CreditView {
 
     private void populateCredits(){
         String[] credits = null;
-        if(DBMS.at.equals("program")) {
-            credits = MainFX.db.search.getProgramCredits(DBMS.currentProgram.getId());
+        if(MainFX.db.at.equals("program")) {
+            credits = MainFX.db.search.getProgramCredits(MainFX.db.currentProgram.getId());
         }
-        else if (DBMS.at.equals("cast")){
-            credits = MainFX.db.search.getCastCredits(DBMS.currentCast.getId());
+        else if (MainFX.db.at.equals("cast")){
+            credits = MainFX.db.search.getCastCredits(MainFX.db.currentCast.getId());
+            //credits = MainFX.db.search.getAllCastCredits(MainFX.db.currentCast.getId());
         }
 
         for(String s : credits){
@@ -127,8 +133,8 @@ public class CreditView {
     private void populateComments(){
         idCommentList.getItems().clear();
         String[] credits = null;
-        if(DBMS.at.equals("program")) {
-            credits = MainFX.db.search.getComments(DBMS.currentProgram.getId());
+        if(MainFX.db.at.equals("program")) {
+            credits = MainFX.db.search.getComments(MainFX.db.currentProgram.getId());
         }
 //        else if (DBMS.at.equals("cast")){
 //            credits = MainFX.db.search.getCastCredits(DBMS.currentCast.getId());
@@ -146,18 +152,18 @@ public class CreditView {
     }
 
     public void addFavorite(MouseEvent mouseEvent) {
-        MainFX.db.addToFavorites(DBMS.currentProgram.getId());
+        MainFX.db.addToFavorites(MainFX.db.currentProgram.getId());
     }
 
     public void addComment(MouseEvent mouseEvent) {
         String comment = idCommentText.getText();
-        DBMS.currentCustomer.addComment(comment, DBMS.currentProgram.getId());
+        MainFX.db.currentCustomer.addComment(comment, MainFX.db.currentProgram.getId());
         populateComments();
     }
 
     public void addRating(MouseEvent mouseEvent) {
         int rate = Integer.parseInt(idRateBox.getValue().toString());
-        DBMS.currentProgram.addRating(rate, DBMS.currentCustomer.id);
-        idRating.setText("Rating: " + DBMS.currentProgram.getAvgRating());
+        MainFX.db.currentProgram.addRating(rate, MainFX.db.currentCustomer.id);
+        idRating.setText("Rating: " + MainFX.db.currentProgram.getAvgRating());
     }
 }

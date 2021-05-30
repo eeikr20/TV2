@@ -1,7 +1,5 @@
 package Database;
 
-import Domain.DBMS;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -10,14 +8,6 @@ public class NotificationSQL {
     public void readUpdates(int userID){
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            /*
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT msg FROM updates WHERE userid = " + userID);
-            //String[] list = new String[];
-            while (rs.next()){
-                System.out.println(rs.getString(1));
-            }
-            //UPDATE table_name SET twitter_handle = '@taylorswift13' WHERE id = 2;
-            */
             PGSQL.query("UPDATE updates SET read = TRUE WHERE userid = " + userID);
         }
         catch (SQLException e){
