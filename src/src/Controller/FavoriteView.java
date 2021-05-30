@@ -1,8 +1,6 @@
 package Controller;
 
-import Domain.DBMS;
 import javafx.fxml.FXML;
-import javafx.scene.control.Control;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
@@ -17,7 +15,7 @@ public class FavoriteView {
     }
 
     private void populate(){
-        String[] list = MainFX.db.favorites.get(DBMS.currentCustomer.id);
+        String[] list = MainFX.db.favorites.get(MainFX.db.currentCustomer.id);
         for(String s : list){
             if(s!=null)
                 idList.getItems().add(s);
@@ -30,7 +28,7 @@ public class FavoriteView {
             return;
         }
         String name = idList.getSelectionModel().getSelectedItem().toString();
-        MainFX.db.favorites.remove(DBMS.currentCustomer.id, name);
+        MainFX.db.favorites.remove(MainFX.db.currentCustomer.id, name);
         idList.getItems().clear();
         populate();
     }
@@ -41,8 +39,7 @@ public class FavoriteView {
             return;
         }
         String name = idList.getSelectionModel().getSelectedItem().toString();
-        System.out.println(name);
-        DBMS.at = "program";
+        MainFX.db.at = "program";
         MainFX.db.search.viewProgramCredits(name);
         MainFX.setScene("/FXML/CreditView.fxml", name );
     }

@@ -17,16 +17,23 @@ public class Login {
             return -2;
         return 1;
     }
-
-    public int signUp(String name, String password){
+    public boolean userInDB(String name){
         if(DBMS.pgSQL.loginSQL.userInDB(name)){
-            System.out.println("User already exist");
-            return -1;
+            //System.out.println("User already exist");
+            return true;
         }
-        else{
+        return false;
+    }
+
+    public void signUp(String name, String password){
+        //if(DBMS.pgSQL.loginSQL.userInDB(name)){
+            //System.out.println("User already exist");
+            //return -1;
+        //}
+        //else{
             MainFX.db.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
-        }
-        return 1;
+        //}
+        //return 1;
     }
     public void logout(){
         MainFX.db.currentCustomer.resetCustomer("", "", -1, "visitor");
@@ -34,21 +41,9 @@ public class Login {
 
 
     public void createSuperUser(String name, String password, String type){
-//        System.out.println("What is the name of the user?");
-//        String name = DBMS.scanner.nextLine();
-//        if(DBMS.pgSQL.loginSQL.userInDB(name)){
-//            //System.out.println("That user is already taken");
-//            return -1;
-//        }
-
-//        System.out.println("What is the users password");
-//        String password = DBMS.scanner.nextLine();
-
-//        System.out.println("What user type are you creating?");
-//        String type = DBMS.scanner.nextLine();
-
+        if(DBMS.pgSQL.loginSQL.userInDB(name)){
+            System.out.println("User already exist");
+        }
         MainFX.db.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'" + type + "');");
-        //return 1;
-        //todo check for existing users in the db
     }
 }

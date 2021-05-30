@@ -12,7 +12,7 @@ public class Cast {
     private int id;
     private int owner;
     private boolean verified;
-    private Float avgRating;
+    private float avgRating;
     private int views;
     private int ratings;
     private List<String> comments;
@@ -27,9 +27,9 @@ public class Cast {
         this.views =0;
         this.ratings = -1;
 
-        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + MainFX.db.currentCustomer.id + ", FALSE, 0, -1)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + 1 + ", FALSE, 0, -1)");
     }
-    public void setCast(String name, int id, int owner, boolean verified, int views, Float avgRating){
+    public void setCast(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;
         this.id = id;
         this.owner = owner;
@@ -37,13 +37,7 @@ public class Cast {
         this.views = views;
         this.avgRating = avgRating;
     }
-    /*
-    public void addRole(String name, Role role){
-        this.role.put(name, role);
-        //todo get the id of the program instread of 0 as id
-        DBMS.postgresDB.query("INSERT INTO credit VALUES (" + 0 +", " + id + ", '" + role +"')");
-    }
-*/
+
     public String getName() {
         return name;
     }

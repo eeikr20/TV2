@@ -17,4 +17,7 @@ public class Role {
         int castID = DBMS.pgSQL.getID("select id from casts where name = '" + cast +"'");
         DBMS.pgSQL.query("INSERT INTO credit VALUES(" + programID + "," + castID + ",'" + role + "', FALSE)");
     }
+    public Role(int program, int cast, String role) {
+        DBMS.pgSQL.query("INSERT INTO credit VALUES(" + program + "," + cast + ",'" + role + "', FALSE)");
+    }
 }

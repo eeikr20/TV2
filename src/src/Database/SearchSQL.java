@@ -19,14 +19,12 @@ public class SearchSQL {
         return -1;
     }
     public String[] viewAllPrograms(){
-        //System.out.println(dbSize("program"));
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE verified = TRUE");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -40,11 +38,10 @@ public class SearchSQL {
         String[] list = new String[dbSize("casts")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE verified = TRUE");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getString(2);
                 i = i + 1;
             }
         }
@@ -60,7 +57,6 @@ public class SearchSQL {
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE verified = TRUE AND UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -74,11 +70,10 @@ public class SearchSQL {
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE AND UPPER(name) LIKE UPPER('%" + input + "%')");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE verified = TRUE AND UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getInt(2);
                 i = i + 1;
             }
         }
@@ -89,14 +84,12 @@ public class SearchSQL {
     }
 
     public String[] sortViewesPrograms() {
-        //System.out.println(dbSize("program"));
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE verified = TRUE ORDER BY views DESC");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -108,15 +101,13 @@ public class SearchSQL {
     }
 
     public String[] sortViewesCast() {
-        //System.out.println(dbSize("program"));
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE ORDER BY views DESC");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE verified = TRUE ORDER BY views DESC");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getInt(2);
                 i = i + 1;
             }
         }
@@ -133,7 +124,6 @@ public class SearchSQL {
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE verified = TRUE ORDER BY avgrating DESC");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -148,11 +138,10 @@ public class SearchSQL {
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE verified = TRUE ORDER BY avgrating DESC");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE verified = TRUE ORDER BY avgrating DESC");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getInt(2);
                 i = i + 1;
             }
         }
@@ -184,11 +173,10 @@ public class SearchSQL {
         String[] res = new String[dbSize("credit")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("select castid, role from credit where program = " + id);
-            //ResultSet rs2 = PGSQL.statement.executeQuery("select role from credit where program = " + id);
+            ResultSet rs = PGSQL.statement.executeQuery("select castid, role from credit where program = " + id + " AND verified = TRUE");
             int i = 0;
             while (rs.next()){
-                res[i] = getCastName(rs.getInt(1)) + " | " + rs.getString(2);
+                res[i] = getCastName(rs.getInt(1)) + " #" + rs.getInt(1) + " | " + rs.getString(2);
                 i = i + 1;
             }
         }
@@ -197,6 +185,23 @@ public class SearchSQL {
         }
         return res;
     }
+    public String[] getAllProgramCredits(int id){
+        String[] res = new String[dbSize("credit")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select castid, role from credit where program = " + id);
+            int i = 0;
+            while (rs.next()){
+                res[i] = getCastName(rs.getInt(1)) + " #" + rs.getInt(1) + " | " + rs.getString(2);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     public String getCastName(int id){
         String s = "";
         try {
@@ -211,7 +216,19 @@ public class SearchSQL {
         }
         return s;
     }
-    private String getProgramName(int id){
+    public int getCastID(String name){
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select id from casts where name = '" + name + "'");
+            rs.next();
+            return rs.getInt(1);
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    public String getProgramName(int id){
         String s = "";
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
@@ -250,8 +267,23 @@ public class SearchSQL {
         String[] res = new String[dbSize("credit")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
+            ResultSet rs = PGSQL.statement.executeQuery("select program, role from credit where castid = " + id + " AND verified = TRUE");
+            int i = 0;
+            while (rs.next()){
+                res[i] = getProgramName(rs.getInt(1)) + " | " + rs.getString(2);
+                i = i + 1;
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return res;
+    }
+    public String[] getAllCastCredits(int id) {
+        String[] res = new String[dbSize("credit")];
+        try {
+            PGSQL.statement = PGSQL.connection.createStatement();
             ResultSet rs = PGSQL.statement.executeQuery("select program, role from credit where castid = " + id);
-            //ResultSet rs2 = PGSQL.statement.executeQuery("select role from credit where program = " + id);
             int i = 0;
             while (rs.next()){
                 res[i] = getProgramName(rs.getInt(1)) + " | " + rs.getString(2);
@@ -269,7 +301,6 @@ public class SearchSQL {
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
             ResultSet rs = PGSQL.statement.executeQuery("select userid, msg from comments where programid = " + id);
-            //ResultSet rs2 = PGSQL.statement.executeQuery("select role from credit where program = " + id);
             int i = 0;
             while (rs.next()){
                 res[i] = getUserName(rs.getInt(1)) + " : " + rs.getString(2);
@@ -301,11 +332,10 @@ public class SearchSQL {
         String[] list = new String[dbSize("casts")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE (owner = " + MainFX.db.getCurrentCustomer().id + " OR verified = TRUE) AND UPPER(name) LIKE UPPER('%" + input + "%')");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE (owner = " + MainFX.db.getCurrentCustomer().id + " OR verified = TRUE) AND UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getString(2);
                 i = i + 1;
             }
         }
@@ -322,7 +352,6 @@ public class SearchSQL {
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -340,7 +369,6 @@ public class SearchSQL {
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM program WHERE (owner = " + MainFX.db.getCurrentCustomer().id + " OR verified = TRUE) AND UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -358,7 +386,6 @@ public class SearchSQL {
             ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM users WHERE type = 'administrator'");
             int i = 0;
             while (rs.next()){
-                //System.out.println(rs.getString(1));
                 list[i] = rs.getString(1);
                 i = i + 1;
             }
@@ -373,11 +400,10 @@ public class SearchSQL {
         String[] list = new String[dbSize("program")];
         try {
             PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("SELECT name FROM casts WHERE UPPER(name) LIKE UPPER('%" + input + "%')");
+            ResultSet rs = PGSQL.statement.executeQuery("SELECT name, id FROM casts WHERE UPPER(name) LIKE UPPER('%" + input + "%')");
             int i = 0;
             while (rs.next()){
-                System.out.println(rs.getString(1));
-                list[i] = rs.getString(1);
+                list[i] = rs.getString(1) + " | " + rs.getString(2);
                 i = i + 1;
             }
         }

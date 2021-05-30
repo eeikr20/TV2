@@ -1,7 +1,5 @@
 package Domain;
 
-import Controller.MainFX;
-
 public class Favorites {
     public void add(int userID, int programID){
         DBMS.pgSQL.favoritesSQL.add(userID, programID);

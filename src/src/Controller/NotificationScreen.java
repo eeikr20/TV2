@@ -1,8 +1,6 @@
 package Controller;
 
-import Domain.DBMS;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
@@ -13,10 +11,10 @@ public class NotificationScreen {
     @FXML
     public void initialize(){
         populate();
-        DBMS.pgSQL.notificationSQL.readUpdates(DBMS.currentCustomer.id);
+        MainFX.db.notification.readUpdates(MainFX.db.currentCustomer.id);
     }
     private void populate(){
-        String[] list = DBMS.pgSQL.notificationSQL.getNotifications(DBMS.currentCustomer.id);
+        String[] list = MainFX.db.notification.getNotifications(MainFX.db.currentCustomer.id);
         for(String s : list){
             if(s!=null)
                 idList.getItems().add(s);
@@ -30,7 +28,7 @@ public class NotificationScreen {
 
     @FXML
     public void remove(MouseEvent mouseEvent) {
-        DBMS.pgSQL.notificationSQL.eraseUpdates(DBMS.currentCustomer.id);
+        MainFX.db.notification.eraseUpdates(MainFX.db.currentCustomer.id);
         idList.getItems().clear();
     }
 }

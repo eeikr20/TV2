@@ -1,15 +1,11 @@
 package Controller;
 
 
-import Domain.DBMS;
-import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.fxml.*;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-
-import java.io.IOException;
 
 
 public class ConsumerView {
@@ -59,7 +55,6 @@ public class ConsumerView {
         }
         else{
             idUpdateCount.setText("Unread notifications: " + newUpdageCount);
-            //MainFX.db.getCurrentCustomer().notification.readUpdates(MainFX.db.getCurrentCustomer().id);
         }
     }
     private void setVisibility(){
@@ -95,9 +90,8 @@ public class ConsumerView {
     }
     @FXML
     void exit() {
-        DBMS.pgSQL.clearDB();
+        MainFX.db.pgSQL.clearDB();
         MainFX.setScene("/FXML/HomeScreen.fxml", "Home Screen");
-        //Platform.exit();
     }
     @FXML
     void create(MouseEvent event) {
@@ -153,14 +147,14 @@ public class ConsumerView {
         RadioButton getBt = (RadioButton) group.getSelectedToggle();
         String btType = getBt.getText();
         if(btType.equals("Programs")){
-            DBMS.at = "program";
+            MainFX.db.at = "program";
             for(String s : program){
                 if(s!=null)
                     idList.getItems().add(s);
             }
         }
         else if(btType.equals("Casts")){
-            DBMS.at = "cast";
+            MainFX.db.at = "cast";
             for(String s : cast){
                 if(s!=null)
                     idList.getItems().add(s);
@@ -171,14 +165,16 @@ public class ConsumerView {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idList.getSelectionModel().getSelectedItem().toString();
-                    System.out.println(name);
+
                     if(btType.equals("Programs")){
-                        DBMS.at = "program";
+                        MainFX.db.at = "program";
                         MainFX.db.search.viewProgramCredits(name);
                     }
                     else if(btType.equals("Casts")){
-                        DBMS.at = "cast";
-                        MainFX.db.search.viewCastCredits(name);
+                        String id = idList.getSelectionModel().getSelectedItem().toString().substring(name.indexOf(" | ")+3, name.length());
+                        int i = Integer.valueOf(id);
+                        MainFX.db.at = "cast";
+                        MainFX.db.search.viewCastCredits(i);
                     }
                     MainFX.setScene("/FXML/CreditView.fxml", name );
                 }

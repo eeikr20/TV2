@@ -1,6 +1,5 @@
 package Controller;
 
-import Domain.DBMS;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -59,7 +58,7 @@ public class CreateScreen {
             return;
         }
         String[] cast = null;
-        if(DBMS.currentCustomer.type.equals("administrator")){
+        if(MainFX.db.currentCustomer.type.equals("administrator")){
             cast = MainFX.db.search.viewAdminPrograms(input);
         }
         else {
@@ -74,7 +73,7 @@ public class CreateScreen {
             public void handle(MouseEvent mouseEvent) {
                 if(mouseEvent.getClickCount() == 2){
                     String name = idMyPrograms.getSelectionModel().getSelectedItem().toString();
-                    DBMS.at = "program";
+                    MainFX.db.at = "program";
                     MainFX.db.search.viewProgramCredits(name);
                     MainFX.setScene("/FXML/EditScreen.fxml", name );
                 }
