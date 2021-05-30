@@ -13,7 +13,6 @@ public class Crediting {
     }
     public void createCast(String name, String admin){
         DBMS.pgSQL.creditingSQL.addCast(name, MainFX.db.currentCustomer.id);
-        Cast cast = new Cast (name, MainFX.db.currentCustomer.id);
 
         notification.updateAdmin("Producer:" + MainFX.db.currentCustomer.name + " has added a cast: " + name + " you must verify.", admin);
     }
