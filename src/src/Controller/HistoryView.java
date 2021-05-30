@@ -34,7 +34,6 @@ public class HistoryView {
     }
 
     public void visit(MouseEvent mouseEvent) {
-
         String name = idList.getSelectionModel().getSelectedItem().toString();
         MainFX.db.at = "program";
         MainFX.db.search.viewProgramCredits(name);

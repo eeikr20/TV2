@@ -25,23 +25,9 @@ public class Verification {
             System.out.println("no access");
             return;
         }
-/*
-        if(DBMS.pgSQL.getVerification("select verified from casts where name = '" + castName +"'")){
-            System.out.println("That cast has already been verified");
-            return;
-        }
-*/
         int producerID = DBMS.pgSQL.getID("SELECT id FROM users where  name = '" + producerName + "'");
-/*
-        if(DBMS.pgSQL.getID("SELECT owner FROM casts where  name = '" + castName + "'") != producerID){
-            System.out.println("That is not the correct producer");
-            return;
-        }
-*/
         PGSQL.query("UPDATE casts SET verified=TRUE WHERE id = " + id);
-        System.out.println(1);
         MainFX.db.notification.addUpdate("The cast with id: " + id + " has been verified and added.", producerID);
-        System.out.println(2);
     }
 
     public void verifyProgram(String producerName, String programName){

@@ -8,8 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-
-
 public class CreateScreen {
     @FXML
     private TextField searchMyPrograms;

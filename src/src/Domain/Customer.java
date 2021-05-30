@@ -6,12 +6,6 @@ public class Customer {
     public int id;
     public String type;
 
-//    public Login login = new Login();
-//    Search search = new Search();
-//    Verification verification = new Verification();
-//    Crediting crediting = new Crediting();
-//    public Notification notification = new Notification();
-
     Customer(String name, String password,  int id, String type){
         this.name = name;
         this.password = password;

@@ -6,12 +6,11 @@ import java.util.Scanner;
 
 public class DBMS {
     //Attributes
-    public static Scanner scanner = new Scanner(System.in);
     public static PGSQL pgSQL = new PGSQL();
 
     public Customer currentCustomer = new Customer("", "", 1, "visitor");
-    public Program currentProgram = new Program("");
-    public Cast currentCast = new Cast("");
+    public Program currentProgram = new Program("", 1);
+    public Cast currentCast = new Cast("", 1);
     public String at = "";
     public Login login = new Login();
     public Search search = new Search();
@@ -22,11 +21,7 @@ public class DBMS {
 
     //constructor
     public DBMS(){
-        //this.run = true;
-        //this.currentUser = new Visitor();
-        //this.postgresDB = new PostgresDB();
-        //this.currentCustomer = new Customer("", "", -1, "visitor");
-            //initTest();
+        //initTest();
     }
     //Methods
 

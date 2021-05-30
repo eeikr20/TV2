@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
-
-
 public class EditScreen {
     @FXML
     public ListView idCastList;
@@ -64,7 +62,6 @@ public class EditScreen {
     }
     private void populateCredits(){
         String[] credits = null;
-        //credits = MainFX.db.search.getProgramCredits(MainFX.db.currentProgram.getId());
         credits = MainFX.db.search.getAllProgramCredits(MainFX.db.currentProgram.getId());
         for(String s : credits){
             if(s!=null)
@@ -130,8 +127,6 @@ public class EditScreen {
 
     @FXML
     public void removeCredit(MouseEvent event) {
-        //idCreditList;
-
         if(idCreditList.getSelectionModel().getSelectedItem()==null){
             Controller.popup("You have to select something to visit");
             return;
@@ -141,7 +136,6 @@ public class EditScreen {
         int id = Integer.parseInt(name.substring(name.indexOf("#")+1, name.indexOf(" | ")));
         MainFX.db.crediting.removeCredit(MainFX.db.currentProgram.getId(), id);
 
-        //new Role(MainFX.db.currentProgram.getId(), id, role);
         fiRole.clear();
         idCreditList.getItems().clear();
         populateCredits();
@@ -173,8 +167,8 @@ public class EditScreen {
     @FXML
     public void verifyCredit(MouseEvent event) {
         String credit = idCreditList.getSelectionModel().getSelectedItem().toString();
-        String name = credit.substring(0, credit.indexOf(" #"));
+        int id = Integer.parseInt(credit.substring(credit.indexOf("#")+1, credit.indexOf(" | ")));
         String role = credit.substring(credit.indexOf(" | ")+3);
-        MainFX.db.verification.verifyCredit(MainFX.db.currentProgram.getId(), DBMS.pgSQL.searchSQL.getCastID(name), role);
+        MainFX.db.verification.verifyCredit(MainFX.db.currentProgram.getId(), id, role);
     }
 }

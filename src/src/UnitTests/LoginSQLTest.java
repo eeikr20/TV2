@@ -1,5 +1,5 @@
 package UnitTests;
-
+/*
 import Database.LoginSQL;
 import Domain.DBMS;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,8 +7,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+*/
 class LoginSQLTest {
+    /*
     DBMS d = new DBMS();
     private LoginSQL loginSQL = DBMS.pgSQL.loginSQL;
 
@@ -39,4 +40,5 @@ class LoginSQLTest {
             assertEquals(true, test[i].equals(correct[i]), "The user data for user 'admin' should be: 'admin', 'admin', '-2', 'administrator'");
         }
     }
+    */
 }

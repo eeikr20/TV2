@@ -1,5 +1,5 @@
 package UnitTests;
-
+/*
 import Controller.MainFX;
 import Database.SearchSQL;
 import Domain.DBMS;
@@ -9,8 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+*/
 public class SearchSQLTest {
+    /*
     DBMS d = new DBMS();
     private SearchSQL searchSQL = d.pgSQL.searchSQL;
 
@@ -253,4 +254,6 @@ public class SearchSQLTest {
         }
         //todo add cast that only can be seen by admins
     }
+
+     */
 }

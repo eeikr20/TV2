@@ -19,21 +19,13 @@ public class Login {
     }
     public boolean userInDB(String name){
         if(DBMS.pgSQL.loginSQL.userInDB(name)){
-            //System.out.println("User already exist");
             return true;
         }
         return false;
     }
 
     public void signUp(String name, String password){
-        //if(DBMS.pgSQL.loginSQL.userInDB(name)){
-            //System.out.println("User already exist");
-            //return -1;
-        //}
-        //else{
-            MainFX.db.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
-        //}
-        //return 1;
+        MainFX.db.pgSQL.query("INSERT INTO users VALUES ('" + name + "','" + password + "', DEFAULT,'account');");
     }
     public void logout(){
         MainFX.db.currentCustomer.resetCustomer("", "", -1, "visitor");

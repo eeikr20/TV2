@@ -1,7 +1,5 @@
 package Domain;
 
-import Controller.MainFX;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class Cast {
 
     //Methods
 
-    public Cast (String name){
+    public Cast (String name, int ownerId){
         this.name = name;
         //this.id = DB.count;
         //DB.count = DB.count + 1;
@@ -27,7 +25,7 @@ public class Cast {
         this.views =0;
         this.ratings = -1;
 
-        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + 1 + ", FALSE, 0, -1)");
+        DBMS.pgSQL.query("INSERT INTO casts VALUES ('" + name + "', DEFAULT, " + ownerId + ", FALSE, 0, -1)");
     }
     public void setCast(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;

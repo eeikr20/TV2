@@ -1,7 +1,6 @@
 package Database;
 
 import Controller.MainFX;
-
 import java.sql.*;
 
 public class PGSQL {
@@ -15,76 +14,7 @@ public class PGSQL {
 
 
     public PGSQL() {
-        //"C:/Program Files/PostgreSQL/13/bin/psql" -U postgres -h 127.0.0.1 -f C:/Users/ander/Documents/tv2DBtest1
-/*
-        try {
-            Runtime rt = Runtime.getRuntime();
-            String executeSqlCommand = "\"C:/Program Files/PostgreSQL/13/bin/psql\" -U postgres -h 127.0.0.1 -f C:/Users/ander/Documents/tv2DBtest1";
-            rt.exec("SET PGPASSWORD=postgres");
-            Process pr = rt.exec(executeSqlCommand);
-            int exitVal = pr.waitFor();
-            System.out.println("Exited with error code " + exitVal);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-*/
-/*
-        try {
-            ProcessBuilder  rt = new ProcessBuilder();
-            String executeSqlCommand = "\"C:/Program Files/PostgreSQL/13/bin/psql\" -U postgres -h 127.0.0.1 -f C:/Users/ander/Documents/tv2DBtest1 tv2";
-            //rt.command("SET PGPASSWORD=postgres");
-            rt.command(executeSqlCommand);
-            //int exitVal = pr.waitFor();
-            //System.out.println("Exited with error code " + exitVal);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-*/
-/*
-        try {
-            String line;
-            Process p = Runtime.getRuntime().exec
-                    ("C:/Program Files/PostgreSQL/13/bin/psql -U postgres -d tv2 -h jdbc:postgresql://localhost:5432/ -f C:/Users/ander/Documents/tv2DBtest1");
-            BufferedReader input =
-                    new BufferedReader
-                            (new InputStreamReader(p.getInputStream()));
-            while ((line = input.readLine()) != null) {
-                System.out.println(line);
-            }
-            input.close();
-        }
-        catch (Exception err) {
-            err.printStackTrace();
-        }
-*/
-
-//        //Registering the Driver
-//        //DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-//        DriverManager.registerDriver(new com.postgresql.jdbc.Driver());
-//        //DriverManager.registerDriver(new Class.forName("org.postgresql.Driver"));
-//        //Getting the connection
-//        String mysqlUrl = "jdbc:mysql://localhost/talakai_noppi";
-//        Connection con = DriverManager.getConnection(mysqlUrl, "root", "password");
-//        System.out.println("Connection established......");
-//        //Initialize the script runner
-//        ScriptRunner sr = new ScriptRunner(con);
-//        //Creating a reader object
-//        Reader reader = new BufferedReader(new FileReader("E:\\sampleScript.sql"));
-//        //Running the script
-//        sr.runScript(reader);
         connection = connect();
-
-
-
-//        query("CREATE TABLE users(name TEXT, password TEXT, id SERIAL PRIMARY KEY NOT NULL, type TEXT);");
-//        query("CREATE TABLE program(name TEXT, id SERIAL PRIMARY KEY NOT NULL, owner INTEGER REFERENCES users(id), verified BOOLEAN, views INTEGER, avgrating FLOAT);");
-//        query("CREATE TABLE casts(name TEXT, id SERIAL PRIMARY KEY NOT NULL, owner INTEGER REFERENCES users(id), verified BOOLEAN, views INTEGER, avgrating FLOAT);");
-//        query("CREATE TABLE updates(msg TEXT, userid INTEGER REFERENCES users(id), read BOOLEAN);");
-//        query("CREATE TABLE history(userid INTEGER REFERENCES users(id), program INTEGER REFERENCES program(id));");
-//        query("CREATE TABLE favorites(userid INTEGER REFERENCES users(id), program INTEGER REFERENCES program(id));");
-//        query("CREATE TABLE credit(program INTEGER REFERENCES program(id), castid INTEGER REFERENCES casts(id), role TEXT, verified BOOLEAN);");
-//        query("CREATE TABLE comments(msg TEXT, userid INTEGER REFERENCES users(id), programid INTEGER REFERENCES program(id));");
-//        query("CREATE TABLE ratings(score INTEGER, userid INTEGER REFERENCES users(id), programid INTEGER REFERENCES program(id));");
     }
     public void incProgramView(String name) {
         query("UPDATE program SET views = " + (1 + MainFX.db.currentProgram.getViews()) + " WHERE name = '" + name + "'");
@@ -161,7 +91,6 @@ public class PGSQL {
         try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            //System.out.println(rs.getString(1));
             rs.next();
             return rs.getString(1);
         }
@@ -205,40 +134,16 @@ public class PGSQL {
         try {
             statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
-                System.out.print(getProgramName(rs.getInt(1)) + ": ");
-                System.out.println(rs.getString(3 ));
-            }
         }
         catch (SQLException e){
             e.printStackTrace();
         }
     }
 
-//    public void returnQuery(String query) {
-//        try {
-//            statement = connection.createStatement();
-//            ResultSet rs = statement.executeQuery(query);
-//            while (rs.next()){
-//                System.out.print(rs.getString(1) + " ");
-//                System.out.print(rs.getString(2 ) + " ");
-//                System.out.print(rs.getString(3 ) + " ");
-//                System.out.println(rs.getString(4));
-//            }
-//        }
-//        catch (SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
-
     public void incCastView(int id) {
-    //public void incCastView(String name) {
-        //query("UPDATE program SET views = " + (1 + DBMS.currentProgram.getViews()) + " WHERE name = " + id);
         query("UPDATE casts SET views = " + (1 + MainFX.db.currentCast.getViews()) + " WHERE id = " + id);
     }
     public void incProgramView(int name) {
-        //public void incCastView(String name) {
-        //query("UPDATE program SET views = " + (1 + DBMS.currentProgram.getViews()) + " WHERE name = " + id);
         query("UPDATE program SET views = " + (1 + MainFX.db.currentProgram.getViews()) + " WHERE name = '" + name + "'");
     }
     public String[] getHistory(int id) {
@@ -306,31 +211,4 @@ public class PGSQL {
     public void setRating(int id, float newRating) {
         query("UPDATE program SET avgrating = " + newRating + " WHERE id = " + id);
     }
-    /*
-    public int ratingCount(int id){
-        try {
-            PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("select count(*) from ratings where programid = " + id);
-            rs.next();
-            return rs.getInt(1);
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-
-    public int ratingSum(int id) {
-        try {
-            PGSQL.statement = PGSQL.connection.createStatement();
-            ResultSet rs = PGSQL.statement.executeQuery("select SUM(ratings) where programid = " + id);
-            rs.next();
-            return rs.getInt(1);
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-        return -1;
-    }
-    */
 }

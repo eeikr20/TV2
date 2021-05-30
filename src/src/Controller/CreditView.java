@@ -122,7 +122,6 @@ public class CreditView {
         }
         else if (MainFX.db.at.equals("cast")){
             credits = MainFX.db.search.getCastCredits(MainFX.db.currentCast.getId());
-            //credits = MainFX.db.search.getAllCastCredits(MainFX.db.currentCast.getId());
         }
 
         for(String s : credits){
@@ -136,10 +135,6 @@ public class CreditView {
         if(MainFX.db.at.equals("program")) {
             credits = MainFX.db.search.getComments(MainFX.db.currentProgram.getId());
         }
-//        else if (DBMS.at.equals("cast")){
-//            credits = MainFX.db.search.getCastCredits(DBMS.currentCast.getId());
-//        }
-
         for(String s : credits){
             if(s!=null)
                 idCommentList.getItems().add(s);

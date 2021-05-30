@@ -1,7 +1,5 @@
 package Domain;
 
-import Controller.MainFX;
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class Program {
     //private int ratingTimes;
     private List<String> comments;
 
-    public Program(String name) {
+    public Program(String name, int ownerId) {
         //this.credits = new HashMap<String,Role>();
         //this.views = 0;
         //this.rating = -1;
@@ -28,7 +26,7 @@ public class Program {
         //this.id = DB.count;
         //DB.count = DB.count + 1;
 
-        DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + 1 + ", FALSE, 0, 0)");
+        DBMS.pgSQL.query("INSERT INTO program VALUES ('" + name + "', DEFAULT, " + ownerId + ", FALSE, 0, 0)");
     }
     public void setProgram(String name, int id, int owner, boolean verified, int views, float avgRating){
         this.name = name;
@@ -53,10 +51,6 @@ public class Program {
 
     public float getAvgRating() {
         return avgRating;
-    }
-
-    public HashMap<String, Role> getCredits(){
-        return credits;
     }
 
     //Methods
